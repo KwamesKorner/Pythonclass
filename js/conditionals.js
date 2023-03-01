@@ -37,18 +37,61 @@ else:
         variables: [
             {'result': '30'}
         ],
-        values: ['5', '15', '30', '50', '20', '10']
+        values: ['30', '200', '20', '10']
     },
     {
         codeBlock: `x = 10
 y = 5
 z = 20
-result = (z < x)
-print(result)`,
+result = (z < x)`,
         variables: [
             {'result': 'False'}
         ],
         values: ['True', 'False']
+    },
+    {
+        codeBlock: `x = 10
+y = 5
+var = x > y`,
+        variables: [
+            {'var': 'True'}
+        ],
+        values: ['True', 'False']
+    },
+    {
+        codeBlock: `x = 10
+y = 5
+z = 7
+result = x > y`,
+        variables: [
+            {'result': 'True'}
+        ],
+        values: ['True', 'False']
+    },
+    {
+        codeBlock: `x = 10
+y = 5
+z = 7
+result = (x > y) and (z < y)`,
+        variables: [
+            {'result': 'False'}
+        ],
+        values: ['True', 'False']
+    },
+    {
+        codeBlock: 'x = 7\nresult = x < 10 and x > 5',
+        variables: [{'result': 'True'}],
+        values: ['False', 'True']
+    },
+    {
+        codeBlock: 'my_list = ["apple", "banana", "orange"]\ncontains_element = "banana" in my_list',
+        variables: [{'contains_element': 'True'}],
+        values: ['False', 'True']
+    },
+    {
+        codeBlock: 'num = 10\nbetween = num > 1 and num <= 5',
+        variables: [{'between': 'False'}],
+        values: ['False', 'True']
     }
 ];
 var visitedIndices = new Set();
