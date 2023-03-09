@@ -134,56 +134,115 @@
                             <h1 class="display-4">Part 1</h1>
                         </div> -->
                         <div class="section-title position-relative mb-6" style="margin-top:5%">
-                            <h1>What is Python?</h1>
+                            <h1>Creating Variables</h1>
                         </div>
                         <!-- <img class="img-fluid rounded w-100 mb-4" src="img/header.jpg" alt="Image"> -->                        
-                        <p>Python is a programming langugage. Basically, a way that we tell the computer what to do!
-                            Python can be used to create a variety of different programs including games.
+                        <p>Variables <strong>store</strong> and <strong>label</strong> information. <br/> 
+                            They also can change in value (like your score and the number lives you have left change in a game). <br/>
+                            Varaibles are how we'll keep track of things like score and lives left in the games we create.
                         </p>
                         <br/>
                         <div class="section-title position-relative mb-6">
-                            <h2>Your First Program: Display your Name on the Screen</h2>
+                            <h2>Opening Replit</h2>
                         </div>
-                        <p>
-                            Go to <a href="https://replit.com/">Replit</a>, create another pygame repl, and name it <strong>my_name</strong><br/><br/>
+                            Go to <a href="https://replit.com/">Replit</a>, create another pygame repl, and name it <strong>variables</strong><br/><br/>
                             <img class="img-fluid rounded w-75 mb-4" src="img/homepage_new_repl.png">
                             <img class="img-fluid rounded w-45 mb-4" src="img/select_pygame.png">
                             <img class="img-fluid rounded w-45 mb-4" src="img/name_repl.png">
                             <br/>
-
-                            Write the following code in <strong>main.py</strong>:<br/><br/>
-                            <iframe src="https://pastebin.com/embed_iframe/L3KSqpEw?theme=dark" style="border:none;width:100%"></iframe><br/>
-
-                            Click on the green <strong>Run</strong> button at the top of the page<br/><br/>
-                            <img class="img-fluid rounded w-20 mb-4" src="img/run_button.png"><br/>
-
-                            The output should look something like: <br/><br/>
-                            <img class="img-fluid rounded w-75 mb-4" src="img/name_output.png"><br/><br/>
-
-                            If you get an error or something different:
-                            <ul>
-                                <li>It's okay! Mistakes happen</li>
-                                <li>Does the code match the example exactly?</li>
-                                <li>Did you add 4 spaces or a tab before <code>screen.draw.text("Your Name", topleft=(10, 10))</code></li>
-                                <li>Have I typed <strong><code>pgzrun</code></strong> correctly?</li>
-                                <li>Make the neessary changes to your code and run it again</li>
-                                <li>Go back to the <strong>File</strong> menu and click <strong>Save</strong>. Then go to the <strong>Run</strong> menu and click <strong>Run Module</strong>.</li>
-                            </ul>
+                        <div class="section-title position-relative mb-6">
+                            <h2>How to Create a Variable</h2>
+                        </div>
+                        <p>
+                            Clear out the sample code in main.py and write the code below. This produces a varialbe called <strong>score</strong> and assigns it the value 0. Run the code and see what happens<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/gwaNQ2fF?theme=dark" style="border:none;width:100%;height:15vh"></iframe><br/>
+                            Now add the following line of code. Run the code again and see what happens<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/3GXJfmPt?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+                            It should something like below:<br/><br/>
+                            <img class="img-fluid rounded w-50 mb-4" src="img/print_score_output.png"><br/>
+                            Play around some more with the code. Try changing the variable name and the value
                         </p>
                         <br/>
                         <div class="section-title position-relative mb-6">
+                            <h2>Number Variables</h2>
+                        </div>
+                        <p>
+                            As you saw above, variables can store numbers that you can do math with!
+                            <table border="1">
+                                <tbody>
+                                    <tr>
+                                        <th>Symbol&nbsp;</th>
+                                        <th>Meaning&nbsp;</th>
+                                    </tr>
+                                    <tr>
+                                        <td>+</td>
+                                        <td>add</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-</td>
+                                        <td>subtract</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*</td>
+                                        <td>multiply</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/</td>
+                                        <td>divide</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+
+                            Type this code into the shell. It
+                            uses two variables, <strong>x</strong> and <strong>y</strong>, which store
+                            integers to perform a simple calculation. Can you guess what the code will print out?
+                            Run the code to see the answer<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/BmCKs2z2?theme=dark" style="border:none;width:100%; height:15vh;"></iframe><br/>
+
+                            Change the values for xand y in your code and see what output you get!
+                        </p>
+                        <br/>
+                        <div class="section-title position-relative mb-6">
+                            <h2>Strings</h2>
+                        </div>
+                        <p>
+                            A string is any data made up of a sequence of characters (letters, numbers, or symbols). 
+                            In Python, Strings are always surrounded by quotation marks (for example, "Hello!"). Words and sentences are strings.
+                        </p>
+                        <br/>
+                        <div class="section-title position-relative mb-6">
+                            <h2>String Variables</h2>
+                        </div>
+                        <p>
+                            Strings can be assigned to variables. Type this code
+                            into the shell window. It assigns the string <strong>John</strong>
+                            to the <strong>name</strong> variable and then displays it.<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/KzDrL7YL?theme=dark" style="border:none;width:100%;height:15vh;"></iframe>
+
+                            Variables can be combined to create new ones.
+                            For example, you can add two strings and store the
+                            combination in a new variable using the <strong>+</strong> sign. Type this code into
+                            the shell to try it out. <br/>
+                            
+                            <iframe src="https://pastebin.com/embed_iframe/C2bXEk2A?theme=dark" style="border:none;width:100%;height:18vh;"></iframe>
+
+                            Try changing the
+                            greeting and the name to make a new message
+                        </p>
+                        <div class="section-title position-relative mb-6">
                             <h3>Challenge</h3>
                         </div>
-                        <p>Play around with the code! See what happens when you change the text <code>"Your Name"</code> 
-                            and the numbers <code>(10,10)</code>. Also try the following:
-                            <ul>
-                                <li>Change the numbers from <code>(10,10)</code> to <code>(100,100)</code>. What happened? What does that tell you about what the code does?</li>
-                                <li>Change the color of your text. Add the following code: <code>color="blue"</code> after you set 
-                                    <code>topleft</code>. Remeber to add a comma before you add the color code!</li>
-                            </ul>
-                        
-                        </p><br/>
-
+                        <p>For some programs, it’s useful to be able to count
+                            the number of characters in a string. You can do
+                            this using the <strong>len()</strong> function. A <strong>function</strong> is a useful
+                            operation that contains multiple lines of code,
+                            so you don’t have to rewrite them.<br/> To
+                            find out the number of characters in the string
+                            Hello, John, type this line of code into the shell
+                            after you’ve created the string, then hit run the code. What do you think the output will be?<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/CdZNzWHf?theme=dark" style="border:none;width:100%; height:15vh;"></iframe>
+                        </p>
                     </div>
 
                     <!-- <h2 class="mb-3">Related Courses</h2>

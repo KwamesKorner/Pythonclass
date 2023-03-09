@@ -134,57 +134,62 @@
                             <h1 class="display-4">Part 1</h1>
                         </div> -->
                         <div class="section-title position-relative mb-6" style="margin-top:5%">
-                            <h1>What is Python?</h1>
+                            <h1>Making Lists</h1>
                         </div>
                         <!-- <img class="img-fluid rounded w-100 mb-4" src="img/header.jpg" alt="Image"> -->                        
-                        <p>Python is a programming langugage. Basically, a way that we tell the computer what to do!
-                            Python can be used to create a variety of different programs including games.
+                        <p>A <strong>List</strong> is used to store a collection of data. It can
+                            hold many different values and keep them in order.
+                            For example, a list can store a deck of cards for a
+                            game, such as Poker, so the code knows which card
+                            to deal next. The position of each value in the list
+                            is identified with a number, starting from 0. You
+                            can use these numbers to change list values.
                         </p>
                         <br/>
                         <div class="section-title position-relative mb-6">
-                            <h2>Your First Program: Display your Name on the Screen</h2>
+                            <h2>Creating a List</h2>
                         </div>
                         <p>
-                            Go to <a href="https://replit.com/">Replit</a>, create another pygame repl, and name it <strong>my_name</strong><br/><br/>
-                            <img class="img-fluid rounded w-75 mb-4" src="img/homepage_new_repl.png">
-                            <img class="img-fluid rounded w-45 mb-4" src="img/select_pygame.png">
-                            <img class="img-fluid rounded w-45 mb-4" src="img/name_repl.png">
+                            Create a new Repl called <strong>list_example</strong>. 
+                            Now imagine you’re coding a multiplayer game
+                            and want to have a different variable for
+                            each card. You would need <strong>52 variables</strong> to
+                            store a whole deck of cards, but we’ll just
+                            work with five for now.
                             <br/>
+                            <iframe src="https://pastebin.com/embed_iframe/sXWNcANU?theme=dark" style="border:none;width:100%; height:25vh"></iframe><br/>
+                            That's still a lot of variables to keep track of, though. What if we could store multiple values in one variable?
+                            There is where <strong>lists</strong> come into play! To create a list, surround the
+                            values you want to store with square brackets [].<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/302fdtgA?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
+                            It’s easy to work with a list once you have
+                            all your values in it. To get an item from a
+                            list, type the name of the list, followed by
+                            the item’s position in the list within square
+                            parentheses. But watch out—in Python, <strong>the
+                            first position in a list is 0, not 1</strong>. Now try
+                            getting different cards out of your <strong>cards</strong> list.<br/>
+                            Type the following code and run your program. What do you get as the output?
+                            <iframe src="https://pastebin.com/embed_iframe/PpwWv2fm?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
+                            Play around with the above code. change the numbers in the square brackets, change the data in the cards variable.
 
-                            Write the following code in <strong>main.py</strong>:<br/><br/>
-                            <iframe src="https://pastebin.com/embed_iframe/L3KSqpEw?theme=dark" style="border:none;width:100%"></iframe><br/>
 
-                            Click on the green <strong>Run</strong> button at the top of the page<br/><br/>
-                            <img class="img-fluid rounded w-20 mb-4" src="img/run_button.png"><br/>
-
-                            The output should look something like: <br/><br/>
-                            <img class="img-fluid rounded w-75 mb-4" src="img/name_output.png"><br/><br/>
-
-                            If you get an error or something different:
-                            <ul>
-                                <li>It's okay! Mistakes happen</li>
-                                <li>Does the code match the example exactly?</li>
-                                <li>Did you add 4 spaces or a tab before <code>screen.draw.text("Your Name", topleft=(10, 10))</code></li>
-                                <li>Have I typed <strong><code>pgzrun</code></strong> correctly?</li>
-                                <li>Make the neessary changes to your code and run it again</li>
-                                <li>Go back to the <strong>File</strong> menu and click <strong>Save</strong>. Then go to the <strong>Run</strong> menu and click <strong>Run Module</strong>.</li>
-                            </ul>
                         </p>
                         <br/>
                         <div class="section-title position-relative mb-6">
                             <h3>Challenge</h3>
                         </div>
-                        <p>Play around with the code! See what happens when you change the text <code>"Your Name"</code> 
-                            and the numbers <code>(10,10)</code>. Also try the following:
-                            <ul>
-                                <li>Change the numbers from <code>(10,10)</code> to <code>(100,100)</code>. What happened? What does that tell you about what the code does?</li>
-                                <li>Change the color of your text. Add the following code: <code>color="blue"</code> after you set 
-                                    <code>topleft</code>. Remeber to add a comma before you add the color code!</li>
-                            </ul>
-                        
-                        </p><br/>
-
+                        <p>For some programs, it’s useful to be able to count
+                            the number of items in a list. You can do
+                            this using the <strong>len()</strong> function from last lesson.<br/>
+                            To find out the number of characters in the list cards, type this line of code into the shell
+                            after you’ve created the list, then hit run the code. What do you think the output will be?<br/>
+                            <iframe src="https://pastebin.com/embed_iframe/ZzxXpHDz?theme=dark" style="border:none;width:100%; height:15vh"></iframe><br/>
+                            For more practice with variables and lists, try out <strong><a href="checkpoint.html">THIS</a></strong> activity and test your knowledge!
+                        </p>
                     </div>
+
+                    <!--MORE GUIDED EXPLORATION-->
 
                     <!-- <h2 class="mb-3">Related Courses</h2>
                     <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
