@@ -58,7 +58,7 @@ const codeBlocks = [
         {'age': '30'},
         {'message': 'My name is John Doe and I am 30 years old.'}
         ],
-        values: ['Jane', 'Doe', '25', 'My name is Jane Smith and I am 25 years old.', 'John', 'My name is John Doe and I am 30 years old.'],
+        values: ['Jane', 'Doe', '25', '30', 'My name is Jane Smith and I am 25 years old.', 'John', 'My name is John Doe and I am 30 years old.'],
     },
     {
         codeBlock: `name = 'Alice'\ngreeting = 'Hello, ' + name + '!' print(greeting)`,
