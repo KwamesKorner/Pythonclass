@@ -39,16 +39,16 @@ const codeBlocks = [
         values: ['2', 'n/a', '5', '3'],
     },
     {
-        codeBlock: 'x = 10\ny = 5\nz = x + y\na = x + z\nb = z * a\nc = z / a',
+        codeBlock: 'x = 10\ny = 5\nz = x + y\na = x + z\nb = z * a\nc = z + a',
         variables: [
             {'x': '10'},
             {'y': '5'},
             {'z': '15'},
             {'a': '25'},
             {'b': '75'},
-            {'c': '3'},
+            {'c': '40'},
         ],
-        values: ['2', '25', '5', '10', '30', '15', '3', '75', '20'],
+        values: ['40', '25', '5', '10', '25', '15', '3', '75', '20'],
     },
     {
         codeBlock: `first_name = 'John'\nlast_name = 'Doe'\nage = 30\nmessage = 'My name is ' + first_name + ' ' + last_name + ' and I am ' + str(age) + ' years old.'`,
