@@ -128,7 +128,9 @@ blockquote {
 
 b,
 strong {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: bolder;
+  color:#2878EB;
 }
 
 small {
