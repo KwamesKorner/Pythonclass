@@ -141,26 +141,25 @@
                             <h2>How it works</h2>
                         </div>
                         <p>
-                            The game is constantly checking whether you’ve clicked the mouse button. 
-                            Every time you click on the apple, it needs to be drawn again somewhere 
-                            else on the screen. If you click and miss, the game will end. The below flowchart shows
-                            the logic behind the
-                            game. The main part
-                            of the code is a loop
-                            that checks if you have
-                            clicked on the apple or not.<br/>
-                            <img class="img-fluid rounded w-50 mb-4" src="img/shoot_fruit.svg">
+                            The game starts by setting the score to
+                            zero. If there is time left, the fox can move
+                            around and collect coins. When the time
+                            is up, the game ends and the final score is
+                            displayed on the screen.<br/>
+                            <img class="img-fluid rounded w-50 mb-4" src="img/coin_collector.svg">
                         </p>
                         <div class="section-title position-relative mb-6">
-                            <h2>Get shooting!</h2>
+                            <h2>Getting Started</h2>
                         </div>
                         <p>
-                            In this program, you’ll start by drawing 
-                            an apple on the screen, then you’ll learn to place it at random 
-                            points before you start shooting it. Let’s get coding!
+                            Follow these steps to build the game.
+                            First set up a new file and import the
+                            relevant modules. Then draw the Actors
+                            and define the functions to run the
+                            game. Good luck!
                         
                             <h3>Open Replit</h3>
-                            Create a new repl called <strong>shoot_the_fruit</strong>. 
+                            Create a new repl called <strong>coin_collector</strong>. 
 
                             <h3>Set up an image folder</h3>
                             This game uses an image of an apple. In the upper left corner of the screen, 
@@ -170,45 +169,54 @@
                             <img class="img-fluid rounded w-25 mb-4" src="img/select_folder.png">
 
                             <h3>Put the image into the folder</h3>
-                            Click <a href="http://res.cloudinary.com/dk-hub/raw/upload/v1530887075/Chapter_3_Shoot_The_Fruit_iiknph.zip">HERE</a> to download the Shoot the Fruit images. Find the file called 
-                            “apple.png”. Click the three dots and select <strong>Upload file</strong>. 
-                            Then, select <strong>apple.png</strong> from the files. <br/>
+                            Click <a href="http://res.cloudinary.com/dk-hub/raw/upload/v1530887074/Chapter_4_Coin_Collector_tqguro.zip" download>HERE</a> to download the Shoot the Fruit images. Find the files called 
+                            "fox.png" and "coin.png". Click the three dots and select <strong>Upload file</strong>. 
+                            Then, select <strong>fox.png</strong> and <strong>coin.png</strong> from the files. <br/>
                             <img class="img-fluid rounded w-25 mb-4" src="img/upload_image.png"><br/>
-                            Drag apple.png into the images folder. Your folders should look something like this now.<br/>
+                            Drag fox.png and coin.png into the images folder. Your folders should look something like this example.<br/>
                             <img class="img-fluid rounded w-25 mb-4" src="img/folder_structure.png">
 
                             <h3>Import pgzrun</h3>
                             Remember, in order to run our game, we need to import <strong>pgzrun</strong>. Add 
                             the below code.
 
-                            <iframe src="https://pastebin.com/embed_iframe/kCS6hf2C?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+                            <iframe src="https://pastebin.com/embed_iframe/kCS6hf2C?theme=dark" style="border:none;width:100%;height:10vh"></iframe>                            
 
-                            <h3>Introducing an Actor</h3>
-                            Now you can start writing some code. Go to <strong>main.py</strong>,
-                            erase the sample code, and write this line of code in the editor window. 
-                            Then click <strong>Run</strong>.<br/>
-                            
-                            <iframe src="https://pastebin.com/embed_iframe/mZSTB3qA?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
-            
-                            **In computer games development,
-                            a sprite is an object, like a coin or an
-                            enemy character, that is controlled by
-                            code. Actors in Python are like Sprites
-                            in Scratch. An Actor can be drawn on
-                            the screen, moved around, and even
-                            interact with other Actors in the
-                            game. Each Actor is given a “script”
-                            (the Python code) to tell it how to
-                            behave in the game.
 
-                            <h3>Drawing the apple on the screen</h3>
-                            Next you need to “draw” the apple on the screen. To do this, 
-                            you can use a built-in Pygame Zero function called <strong>draw()</strong>. 
-                            This function is used to redraw the game screen. For example, 
-                            if a character has moved or a score has changed, you can use 
-                            this function to update the screen with those changes. Write 
-                            this code beneath your previous code.
-                            <iframe src="https://pastebin.com/embed_iframe/1thuEVvd?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
+                            <h3>Get coding</h3>
+                            Now you’re ready to start coding. This game works
+                            similarly to Shoot the Fruit, so you’ll be able
+                            to reuse some of the code from that game. Begin
+                            by setting the size of the playing area. Type this
+                            code at the top of your file.
+
+                            <iframe src="https://pastebin.com/embed_iframe/FPncDvmg?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+
+                            <h3>Setting the score</h3>
+                            Now, let’s set the score to zero to begin with.
+                            You’ll need to use a variable to do this. Type
+                            the code below.
+                            <iframe src="https://pastebin.com/embed_iframe/urGbSkyf?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+
+                            <h3>Game over?</h3>
+                            You also need a Boolean variable (a variable
+                            whose value can either be True or False) to tell
+                            Pygame Zero if the game is over or not. At this
+                            stage, set the variable to False--this means the game is <strong>NOT</strong> over when we begin.
+                            <iframe src="https://pastebin.com/embed_iframe/i3Cb0H5Q?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+
+                            <h3>Introducing the Actors</h3>
+                            This game will feature two Actors—a fox and a coin.
+                            To create them and set their positions, add these
+                            lines of code under what you typed in Step 6.
+                            <iframe src="https://pastebin.com/embed_iframe/CpL4RcbF?theme=dark" style="border:none;width:100%;height:20vh"></iframe>
+
+                            <h3>Time to draw</h3>
+                            Now you need to use the draw() function
+                            to display the Actors on the screen, change
+                            the background color, and display the
+                            score. Type in this code to do these.
+                            <iframe src="https://pastebin.com/embed_iframe/yV2ADfWG?theme=dark" style="border:none;width:100%;height:21vh"></iframe>
 
                             <h3>Call pgzrun.go()</h3>
                             In order to start the game, we have to use our pgzrun import by calling <strong>pgzrun.go()</strong> 
@@ -216,105 +224,155 @@
                             THE LAST LINE OF CODE IN YOUR PROGRAM</strong>.
 
                             <iframe src="https://pastebin.com/embed_iframe/meyMEYWc?theme=dark" style="border:none;width:100%;height:10vh;"></iframe>
-
-
-                            <h3>Test the code</h3>
-                            Now it’s time to test the code. Go ahead and click <strong>Run</strong> again 
+                            
+                            <h3>Try it out</h3>
+                            Now test the code you’ve written so far. Go ahead and click <strong>Run</strong> 
                             and see what happens.
+                            Did your game run? You should see the fox
+                            and coin on your screen, with the score in
+                            the top-left corner. You can’t actually play the
+                            game yet, but it’s a good idea to run your
+                            code frequently to check for bugs.
+                            
+                            <h3>Using placeholders</h3>
+                            You need to write some more functions to
+                            finish the game. You can add function placeholders
+                            without having to define them right away by using
+                            the keyword pass. Type in this code to give yourself
+                            a template of the functions you’ll need.
 
-                            <h3>Placing the apple</h3>
-                            At the moment, the apple appears in the top-left corner of the game window. 
-                            You can change the code to place the apple exactly where you want it on the 
-                            screen. Write this function, which will place the apple at the <strong>coordinates 
-                            (300, 200)</strong>.
-                            <iframe src="https://pastebin.com/embed_iframe/m4GLnMME?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+                            <iframe src="https://pastebin.com/embed_iframe/5BaSurCg?theme=dark" style="border:none;width:100%;height:40vh"></iframe>
+                            
+                            <h3>Importing randint()</h3>
+                            Now it’s time to define these functions. The
+                            first one will use Python’s built-in randint()
+                            function, so you need to import it into your
+                            program. Type this line at the very top of
+                            your code to import it.
 
-                            <h3>Running the function</h3>
-                            After you’ve written the function to place the apple on the screen, 
-                            you need to tell Python to run it. Add this extra line of code to run 
-                            the function called <strong>place_apple()</strong>.
-                            <iframe src="https://pastebin.com/embed_iframe/m5xcgDE1?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+                            <iframe src="https://pastebin.com/embed_iframe/fZZc6KEg?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
-                            <h3>Test it again</h3>
-                            Save your file and then run the code again. This time the apple will appear 
-                            at the point (300, 200).
-                            <img class="img-fluid rounded w-75 mb-4" src="img/apple_pos.png">
+                            <h3>Placing the coin</h3>
+                            Next change the code in your place_coin()
+                            function. This function will place the coin
+                            in a random position on the screen. Delete
+                            pass and type in these commands.
 
-                            <h3>Dealing with clicks</h3>
-                            Now it’s time to write the code that will run when you press the mouse. 
-                            Pygame Zero has a built-in function called <strong>on_mouse_down()</strong>, which is 
-                            run every time you click the mouse. Type this code in between the code 
-                            you added in Step 9 and Step 10, then run it. You should see the message “Good shot!” 
-                            in the Command Prompt or Terminal window each time you click the mouse.
+                            <iframe src="https://pastebin.com/embed_iframe/Q2VVMWJQ?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
 
-                            <iframe src="https://pastebin.com/embed_iframe/8Wb4JYtX?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+                            <h3>Run the function</h3>
+                            Remember, it’s not enough just to define the
+                            function; you have to run it, too. Add this line
+                            of code to the very bottom of your game.
 
-                            <h3>Adding some logic</h3>
-                            At this point, the “Good shot!” message is displayed every time you click the mouse, 
-                            but we only want it to show if the player actually hits the apple. You can do this by 
-                            changing the code in the previous step to include an if statement. This code checks if 
-                            the apple and the mouse cursor are in the same position. If they are, the message is 
-                            displayed.
+                            <iframe src="https://pastebin.com/embed_iframe/ymW1Zujt?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
-                            <iframe src="https://pastebin.com/embed_iframe/72xZQnkc?theme=dark" style="border:none;width:100%; height:20vh"></iframe>
+                            <h3>Time’s up!</h3>
+                            Now let’s fill in the code for the time_up() function.
+                            In this function, set the game_over Boolean
+                            variable to True, which will tell the program to
+                            quit the game when the function is called. Type
+                            in the following code.
 
-                            <h3>Missed a shot? Game over!</h3>
-                            Add some more logic to your code, so that if you miss a shot and don’t 
-                            click on the apple, it quits the game. Add an else statement in order to make this happen.
+                            <iframe src="https://pastebin.com/embed_iframe/yYJTvuZJ?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
 
-                            <iframe src="https://pastebin.com/embed_iframe/RKCRvPE4?theme=dark" style="border:none;width:100%; height:28vh"></iframe>
 
-                            <h3>Importing Random</h3>
-                            The game is very easy at this point, because the apple is always drawn at the same place 
-                            on the screen. You can use Python’s Random module to make the game more challenging by 
-                            placing the apple at a random point on the screen each time it is drawn. First, add 
-                            this code at the very top of your program.
+                            <h3>Set the timer</h3>
+                            Now that time_up() is defined, the program needs
+                            to run it. But it needs to run seven seconds after the
+                            game starts. You can use Pygame Zero’s built-in tool
+                            clock to do this. This tool lets the program call a function 
+                            after a specified amount of time. Add this line in 
+                            the code as shown here.
 
-                            <iframe src="https://pastebin.com/embed_iframe/fZZc6KEg?theme=dark" style="border:none;width:100%; height:10vh"></iframe>
+                            <iframe src="https://pastebin.com/embed_iframe/ukstGy1t?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
-                            <h3>Using Random</h3>
-                            Change the code you typed in Step 9 to look like this. The code will now use the randint() 
-                            function to pick a random number between 10 and 500 for the x coordinate and a random number 
-                            between 10 and 500 for the y coordinate.
+                            <h3>Ending the game</h3>
+                            The game starts and then seven seconds later,
+                            clock.schedule will run the time_up() function,
+                            which ends the game. But the game still needs
+                            to show the player’s final score. For this, you need to
+                            add one more bit of code to the draw() function.
 
-                            <iframe src="https://pastebin.com/embed_iframe/616CUmyP?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
+                            <iframe src="https://pastebin.com/embed_iframe/XJuDkFSg?theme=dark" style="border:none;width:100%;height:16vh"></iframe>
 
-                            <h3>Time to shoot!</h3>
-                            You did it! Run your program to play the game. Each time you “shoot” the apple, it will 
-                            move to a random place on the screen for you to “shoot” again.
+                            <h3>Using update()</h3>
+                            The final function you need to define is update(). This is
+                            a built-in Pygame Zero function, which means that, unlike
+                            the other functions, you don’t need to worry about when
+                            to run it. Once you’ve defined it, Pygame Zero will run
+                            it automatically—60 times a second! Delete pass under
+                            def update() and add this code. It will move the fox to
+                            the left if the left keyboard arrow is pressed.
 
+                            <iframe src="https://pastebin.com/embed_iframe/AQCFVp7m?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+
+                            <h3>One way only</h3>
+                            Now test your code. You should be able to
+                            move the fox to the left. But the fox needs
+                            to be able to move in other directions, too,
+                            so add this code to do that.
+
+                            <iframe src="https://pastebin.com/embed_iframe/NKC4B4y2?theme=dark" style="border:none;width:100%;height:25vh"></iframe>
+
+                            <h3>Collect the coins</h3>
+                            Finally, you need to add some code to
+                            update the score if the fox touches a coin.
+                            Add this code to the update() function.
+
+                            <iframe src="https://pastebin.com/embed_iframe/WbD3GmMX?theme=dark" style="border:none;width:100%;height:55vh"></iframe>
+
+                            <h3>Game complete!</h3>
+                            You’ve written all the code, and your game is now
+                            ready to go! Test your game and see how many
+                            coins you can collect before the game is over.
                         </p>
                         <div class="section-title position-relative mb-6">
                             <h2>Hacks and Tweaks</h2>
                         </div>
                         <p>
                             Additionally, you can try the following customizations to make your game even more interesting:
-                            <h3>Change the fruit image</h3>
-                            Find a picture of another fruit in the Python Games Resource Pack or create one using an 
-                            <a href="https://www.piskelapp.com/p/create/sprite">THIS</a> 8-bit editor online. Make sure you’ve got a suitably sized image before you save it in 
-                            the images folder. Then name the image and change the code accordingly to use the new 
-                            fruit as an Actor.
 
-                            <iframe src="https://pastebin.com/embed_iframe/7rKnPmQT?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+                            <h3>A different Actor</h3>
+                            You can replace the fox with some other character by using
+                            another image from the Python Games Resource Pack, or
+                            you can use the 8-bit editors available online to make
+                            your own Actor. Remember to update the code so it uses
+                            the name of the new character throughout the program.
 
-                            <h3>Keep count</h3>
-                            Change your code so that it can keep count of the number of times you click successfully. 
-                            You can store the count in a variable, start by setting the variable to 0, increase the 
-                            count by 1 each time you click on the apple, and use print() to show the score in the 
-                            Command Prompt or Terminal window each time the apple is drawn on the screen.
+                            <iframe src="https://pastebin.com/embed_iframe/D5gNFWe8?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
-                            <h3>Add distractions</h3>
-                            Why not add another Actor to the game to distract the player in the hope they’ll 
-                            click on that object by mistake? For instance, a red ball might look similar 
-                            enough to an apple to fool the player!
+                            <h3>Extra time</h3>
+                            The game currently ends after seven seconds. To
+                            make the game easier, you could give the player
+                            more time to play. You can do this by changing just
+                            one line of code.
 
-                            <h3>Remove the game over condition</h3>
-                            Remove the command that quits the game if you miss a shot, making the game 
-                            easier to play and less frustrating for the user.
+                            <iframe src="https://pastebin.com/embed_iframe/dzjjLBFX?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+
+                            <h3>Change the playing area</h3>
+                            You can change the size of the playing area by changing
+                            the values of WIDTH and HEIGHT. Try using different
+                            numbers for these values and see what happens. Can 
+                            you spot which part of the code you need to update?
+
+                            <h3>Go faster!</h3>
+                            You can tweak the code to make the fox move
+                            faster. For this, you’ll need to change some of the
+                            code in the update() function. At the moment, the
+                            fox moves two pixels every time the arrows are
+                            pressed. Here’s a way to make it move at double
+                            that speed.
+
+                            <iframe src="https://pastebin.com/embed_iframe/JV0jQjwJ?theme=dark" style="border:none;width:100%;height:30vh"></iframe>
+
+                            <h3>Have the game end for a reason other than time being up</h3>
+                            Add other game-over conditions like hitting a bad actor or 
+                            stepping in a restricted part of the board.
 
                             <h3>Add Levels</h3>
                             Make the game harder as the score increases. You can try adding more bad actors/disractions
-                            or using smaller fruit.
+                            or having the fox move slower as the score and level increase.
                         </p>
                     </div>
 
