@@ -130,12 +130,12 @@
                 <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
                     <div class="mb-7">
                         <div class="section-title position-relative mb-6" style="margin-top:5%">
-                            <h1>Shoot the Fruit</h1>
+                            <h1>Coin Collector</h1>
                         </div>                       
-                        <p>When the game starts, an apple appears on the screen for you to 
-                            “shoot.” If you hit it, a “Good shot!” message pops up, and the 
-                            apple appears at another point on the screen. But if you miss, a 
-                            “You missed!” message is shown, and the game ends.</p>
+                        <p>Help a crafty fox collect as many coins as
+                            possible before the time runs out. The more
+                            coins you get, the higher your score. Be quick!
+                            You only have a few seconds to collect them.</p>
                         <br/>
                         <div class="section-title position-relative mb-6">
                             <h2>How it works</h2>
@@ -245,7 +245,7 @@
                             
                             <h3>Importing randint()</h3>
                             Now it’s time to define these functions. The
-                            first one will use Python’s built-in randint()
+                            first one will use Python’s built-in <strong>randint()</strong>
                             function, so you need to import it into your
                             program. Type this line at the very top of
                             your code to import it.
@@ -253,7 +253,7 @@
                             <iframe src="https://pastebin.com/embed_iframe/fZZc6KEg?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
                             <h3>Placing the coin</h3>
-                            Next change the code in your place_coin()
+                            Next change the code in your <strong>place_coin()</strong>
                             function. This function will place the coin
                             in a random position on the screen. Delete
                             pass and type in these commands.
@@ -268,7 +268,7 @@
                             <iframe src="https://pastebin.com/embed_iframe/ymW1Zujt?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
                             <h3>Time’s up!</h3>
-                            Now let’s fill in the code for the time_up() function.
+                            Now let’s fill in the code for the <strong>time_up()</strong> function.
                             In this function, set the game_over Boolean
                             variable to True, which will tell the program to
                             quit the game when the function is called. Type
@@ -278,26 +278,26 @@
 
 
                             <h3>Set the timer</h3>
-                            Now that time_up() is defined, the program needs
+                            Now that <strong>time_up()</strong> is defined, the program needs
                             to run it. But it needs to run seven seconds after the
                             game starts. You can use Pygame Zero’s built-in tool
                             clock to do this. This tool lets the program call a function 
                             after a specified amount of time. Add this line in 
-                            the code as shown here.
+                            the code towards the bottom, right before <strong>place_coin()</strong>
 
                             <iframe src="https://pastebin.com/embed_iframe/ukstGy1t?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
 
                             <h3>Ending the game</h3>
                             The game starts and then seven seconds later,
-                            clock.schedule will run the time_up() function,
+                            clock.schedule will run the <strong>time_up()</strong> function,
                             which ends the game. But the game still needs
                             to show the player’s final score. For this, you need to
-                            add one more bit of code to the draw() function.
+                            add one more bit of code to the <strong>draw()</strong> function.
 
                             <iframe src="https://pastebin.com/embed_iframe/XJuDkFSg?theme=dark" style="border:none;width:100%;height:16vh"></iframe>
 
                             <h3>Using update()</h3>
-                            The final function you need to define is update(). This is
+                            The final function you need to define is <strong>update()</strong>. This is
                             a built-in Pygame Zero function, which means that, unlike
                             the other functions, you don’t need to worry about when
                             to run it. Once you’ve defined it, Pygame Zero will run
@@ -318,7 +318,7 @@
                             <h3>Collect the coins</h3>
                             Finally, you need to add some code to
                             update the score if the fox touches a coin.
-                            Add this code to the update() function.
+                            Add this code to the <strong>update()</strong> function.
 
                             <iframe src="https://pastebin.com/embed_iframe/WbD3GmMX?theme=dark" style="border:none;width:100%;height:55vh"></iframe>
 
@@ -359,7 +359,7 @@
                             <h3>Go faster!</h3>
                             You can tweak the code to make the fox move
                             faster. For this, you’ll need to change some of the
-                            code in the update() function. At the moment, the
+                            code in the <strong>update()</strong> function. At the moment, the
                             fox moves two pixels every time the arrows are
                             pressed. Here’s a way to make it move at double
                             that speed.
