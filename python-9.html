@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+        <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+            <div class="mb-7">
+                <div class="section-title position-relative mb-6" style="margin-top:5%">
+                    <h1>Jumping Box</h1>
+                </div>                       
+                <p>Help a little box jump over obstacles and see how far
+                    you can go. The more obstacles you pass, the higher your score. Be careful!
+                    One collision and it's game over.</p>
+                <br/>
+                <div class="section-title position-relative mb-6">
+                    <h2>How it works</h2>
+                </div>
+                <p>
+                    The game starts with a box on the ground and an obstacle moving towards it.
+                    The box can jump to avoid the obstacle. When the box collides with the obstacle,
+                    the game ends and the final score is displayed on the screen.<br/>
+                    <img class="img-fluid rounded w-50 mb-4" src="img/jumping_box.svg">
+                </p>
+                <div class="section-title position-relative mb-6">
+                    <h2>Getting Started</h2>
+                </div>
+                <p>
+                    Follow these steps to build the game.
+                    First set up a new file and import the
+                    relevant modules. Then draw the Actors
+                    and define the functions to run the
+                    game. Good luck!
+                
+                    <h3>Open Replit</h3>
+                    Create a new <a href="https://replit.com/" target="_blank">Repl</a> called <strong>jumping_box</strong>. 
+    
+                    <h3>Set up an image folder</h3>
+                    This game uses images of a box and an obstacle. In the upper left corner of the screen, 
+                    click the folder icon with a plus sign and name the folder 
+                    <strong>images</strong>.<br/>
+    
+                    <img class="img-fluid rounded w-25 mb-4" src="img/select_folder.png">
+    
+                    <h3>Put the images into the folder</h3>
+                    Click <a href="https://www.pixilart.com/draw" target="_blank">HERE</a> to create the Jumping Box images. Save your box (or character) and obstacle as 
+                    "box.png" and "obstacle.png". Click the three dots and select <strong>Upload file</strong>. 
+                    Then, select <strong>box.png</strong> and <strong>obstacle.png</strong> from the files. <br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/upload_image.png"><br/>
+                    Drag box.png and obstacle.png into the images folder. Your folders should look something like this example.<br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/folder_structure.png">
+    
+                    <h3>Import pgzrun</h3>
+                    Remember, in order to run our game, we need to import <strong>pgzrun</strong>. Add 
+                    the below code.
+    
+                    <pre><code>import pgzrun</code></pre> 
+    
+                    <h3>Import random</h3>
+                    Since we will need to generate random positions for the obstacles, we also need to import the <strong>random</strong> library. Add the following line of code.
+    
+                    <pre><code>import random</code></pre>
+    
+                    <h3>Set the game variables</h3>
+                    Set up the game variables such as screen width and height, obstacle speed, jump height, and the initial score. Type this code at the top of your file.
+    
+                    <pre><code>
+    WIDTH = 700
+    HEIGHT = 400
+    OBSTACLE_SPEED = 5
+    JUMP_HEIGHT = 240
+    GRAVITY = 4
+    SCORE = 0</code></pre>
+    
+                    <h3>Create the Actors</h3>
+                    Now, let’s create the Actors—a box and an obstacle.
+                    To create them and set their positions, add these
+                    lines of code under the game variables.
+    
+                    <pre><code>
+    box = Actor("box", (100, HEIGHT - 25))
+    obstacle = Actor("obstacle", (WIDTH, HEIGHT - 25))</code></pre>
+    
+                    <h3>Set up game states</h3>
+                    We need two Boolean variables (variables
+                    whose values can either be True or False) to tell
+                    Pygame Zero if the game is over or if the start screen is displayed. At this
+                    stage, set both variables to False--this means the game is <strong>NOT</strong> over and the start screen is <strong>NOT</strong> displayed when we begin.
+    
+                    <pre><code>
+    game_over = False
+    start_screen = True</code></pre>
+    
+                    <h3>Draw the game elements</h3>
+                    Now you need to use the draw() function
+                    to display the Actors on the screen, change
+                    the background color, and display the
+                    score.<br/><br/>
+
+    First, we define our <strong>draw()</strong> function.
+    
+    
+                    <pre><code>
+    def draw():
+</code></pre>
+Then, we check if the start_screen variable is True, which means we are at the starting screen of the game. 
+If start_screen is True, we fill the entire screen with a green color as the background for the start screen and draw the text "Press Enter to Begin" 
+at the center of the screen with a font size of 60 and a white color.
+<pre><code>
+        if start_screen:
+            screen.fill("Green")
+            screen.draw.text("Press Enter to Begin",
+                             center=(WIDTH // 2, HEIGHT // 2),
+                             fontsize=60,
+                             color="white")
+</code></pre>
+We check if the game_over variable is True, which means the game has ended.
+If game_over is True, we fill the entire screen with an orange color as the background for the game over screen and
+draw the text "GAME OVER" at the center of the screen with a font size of 60 and a white color.
+<pre><code>    
+        elif game_over:
+            screen.fill("orange")
+            screen.draw.text("GAME OVER",
+                             center=(WIDTH // 2, HEIGHT // 2),
+                             fontsize=60,
+                             color="white")
+</code></pre>
+This part of the code runs when both start_screen and game_over are False, which means the game is currently being played.
+We clear the screen of any previous drawings.
+We then fill the entire screen with a brown color as the background for the gameplay.
+After that, we draw the box and obstacle Actors on the screen at their current positions.
+Finally, we draw the current score at the top-left corner of the screen with a font size of 30 and a white color.
+<pre><code>
+        else:
+            screen.clear()
+            screen.fill("brown")
+            box.draw()
+            obstacle.draw()
+            screen.draw.text("Score: " + str(SCORE), (10, 10),
+                           fontsize=30,
+                           color="white")</code></pre>
+    
+<h3>Update the game</h3>
+The update() function handles the game logic, such as obstacle movement, box jumping, and collision detection. Type in the following code to define the update() function.
+<br/><br/>
+Define the <strong>update()</strong> function.
+<pre><code>
+    def update():
+</code></pre>
+Write these two lines declare the global variables <strong>SCORE</strong>, <strong>start_screen</strong>, and <strong>game_over</strong>. 
+This allows us to access and modify them within the <strong>update()</strong> function.
+<pre><code>
+        global SCORE
+        global start_screen, game_over
+</code></pre>
+Write this block of code to check if the game is in the <strong>start_screen</strong> or <strong>game_over</strong> state. 
+If either of these is True, the function immediately returns, 
+and the rest of the code in the <strong>update()</strong> function is not executed.
+This keeps the game from starting before it's supposed to
+<pre><code>
+        if start_screen or game_over:
+            return
+</code></pre>
+Write these lines handle the movement of the obstacle. 
+The obstacle's x-coordinate is reduced by <strong>OBSTACLE_SPEED</strong>, 
+moving it to the left. If the right side of the obstacle goes off-screen (its x-coordinate is less than 0), 
+the <strong>reset_obstacle()</strong> function is called, and the <strong>SCORE</strong> is increased by 1.
+<pre><code>
+        obstacle.x -= OBSTACLE_SPEED
+        if obstacle.right &lt; 0:
+            reset_obstacle()
+            SCORE += 1
+</code></pre>
+Write this block of code to control the box's jumping action. 
+If the up arrow key is pressed and the box is on the ground (its y-coordinate is equal to `HEIGHT - 25`), 
+the box's y-coordinate is reduced by <strong>JUMP_HEIGHT</strong>, making it jump.
+<pre><code>
+        if keyboard.up and box.y == HEIGHT - 25:
+            box.y -= JUMP_HEIGHT
+</code></pre>
+Write this code to handle the box's falling action. 
+If the box is not on the ground (its y-coordinate is less than `HEIGHT - 25`), 
+the box's y-coordinate is increased by <strong>GRAVITY</strong>, causing it to fall.
+<pre><code>
+        if box.y &lt; HEIGHT - 25:
+            box.y += GRAVITY
+</code></pre>
+Write this block to check for collisions between the box and the obstacle using the 
+<strong>colliderect()</strong> method. If a collision occurs, the <strong>game_over</strong> 
+variable is set to True, ending the game.
+<pre><code>
+        if box.colliderect(obstacle):
+            game_over = True</code></pre>
+    
+<h3>Handle key presses</h3>
+Now, let's define the on_key_down() function that will handle the Enter key press to start the game. Add the following code.
+
+                    <pre><code>
+        def on_key_down(key):
+            if key == keys.RETURN:
+                global start_screen
+                start_screen = False</code></pre>
+    
+                    <h3>Reset the obstacle</h3>
+                    Define the reset_obstacle() function that will reset the obstacle position once it goes off-screen. Type in the following code.
+    
+                    <pre><code>
+        def reset_obstacle():
+            obstacle.x = WIDTH</code></pre>
+    
+                    <h3>Call pgzrun.go()</h3>
+                    In order to start the game, we have to use our pgzrun import by calling <strong>pgzrun.go()</strong> 
+                    at the very end of our program. Add the following line to your program. <strong>MAKE SURE IT'S ALWAYS 
+     
+                    THE LAST LINE OF CODE IN YOUR PROGRAM</strong>.
+    
+                    <pre><code>pgzrun.go()</code></pre>
+                    
+                    <h3>Try it out</h3>
+                    Now test the code you’ve written so far. Go ahead and click <strong>Run</strong> 
+                    and see what happens.
+                    Did your game run? You should see the start screen with "Press Enter to Begin" text.
+                    Press Enter to start the game, and try to jump over the obstacles. Check if the game ends when the box collides with the obstacle.
+    
+                    <div class="section-title position-relative mb-6">
+                        <h2>Hacks and Tweaks</h2>
+                    </div>
+                    <p>
+                        Additionally, you can try the following customizations to make your game even more interesting:
+    
+                        <h3>Change the box and obstacle images</h3>
+                        You can replace the box and obstacle images with other characters or objects by using
+                        different images. Remember to update the code so it uses
+                        the names of the new images throughout the program.
+    
+                        <h3>Adjust the game speed</h3>
+                        The game currently has a fixed obstacle speed. To
+                        make the game more challenging, you could increase the speed of the obstacles as the score increases. You can do this by updating the OBSTACLE_SPEED value based on the SCORE.
+    
+                        <h3>Change the playing area</h3>
+                        You can change the size of the playing area by changing
+                        the values of WIDTH and HEIGHT. Try using different
+                        numbers for these values and see what happens.
+    
+                        <h3>Add Levels</h3>
+                        Make the game harder as the score increases. You can try adding more obstacles, increasing the speed, or having the box move slower as the score and level increase.
+                    </p>
+            </div>
+    <!-- Detail End -->
+                    <!--MORE GUIDED EXPLORATION-->
+
+                    <!-- <h2 class="mb-3">Related Courses</h2>
+                    <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
+                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                            <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                            <div class="courses-text">
+                                <h4 class="text-center text-white px-3">Web design & development courses for
+                                    beginners</h4>
+                                <div class="border-top w-100 mt-3">
+                                    <div class="d-flex justify-content-between p-4">
+                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
+                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
+                                            <small>(250)</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                            <img class="img-fluid" src="img/courses-2.jpg" alt="">
+                            <div class="courses-text">
+                                <h4 class="text-center text-white px-3">Web design & development courses for
+                                    beginners</h4>
+                                <div class="border-top w-100 mt-3">
+                                    <div class="d-flex justify-content-between p-4">
+                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
+                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
+                                            <small>(250)</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                            <img class="img-fluid" src="img/courses-3.jpg" alt="">
+                            <div class="courses-text">
+                                <h4 class="text-center text-white px-3">Web design & development courses for
+                                    beginners</h4>
+                                <div class="border-top w-100 mt-3">
+                                    <div class="d-flex justify-content-between p-4">
+                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
+                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
+                                            <small>(250)</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div> -->
+               </div>
+
+               <!-- <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="bg-primary mb-5 py-3">
+                        <h3 class="text-white py-3 px-4 m-0">Course Features</h3>
+                        <div class="d-flex justify-content-between border-bottom px-4">
+                            <h6 class="text-white my-3">Instructor</h6>
+                            <h6 class="text-white my-3">John Doe</h6>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom px-4">
+                            <h6 class="text-white my-3">Rating</h6>
+                            <h6 class="text-white my-3">4.5 <small>(250)</small></h6>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom px-4">
+                            <h6 class="text-white my-3">Lectures</h6>
+                            <h6 class="text-white my-3">15</h6>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom px-4">
+                            <h6 class="text-white my-3">Duration</h6>
+                            <h6 class="text-white my-3">10.00 Hrs</h6>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom px-4">
+                            <h6 class="text-white my-3">Skill level</h6>
+                            <h6 class="text-white my-3">All Level</h6>
+                        </div>
+                        <div class="d-flex justify-content-between px-4">
+                            <h6 class="text-white my-3">Language</h6>
+                            <h6 class="text-white my-3">English</h6>
+                        </div>
+                        <h5 class="text-white py-3 px-4 m-0">Course Price: $199</h5>
+                        <div class="py-3 px-4">
+                            <a class="btn btn-block btn-secondary py-3 px-5" href="">Enroll Now</a>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h2 class="mb-3">Categories</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="" class="text-decoration-none h6 m-0">Web Design</a>
+                                <span class="badge badge-primary badge-pill">150</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="" class="text-decoration-none h6 m-0">Web Development</a>
+                                <span class="badge badge-primary badge-pill">131</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="" class="text-decoration-none h6 m-0">Online Marketing</a>
+                                <span class="badge badge-primary badge-pill">78</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="" class="text-decoration-none h6 m-0">Keyword Research</a>
+                                <span class="badge badge-primary badge-pill">56</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="" class="text-decoration-none h6 m-0">Email Marketing</a>
+                                <span class="badge badge-primary badge-pill">98</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-5">
+                        <h2 class="mb-4">Recent Courses</h2>
+                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
+                            <img class="img-fluid rounded" src="img/courses-80x80.jpg" alt="">
+                            <div class="pl-3">
+                                <h6>Web design & development courses for beginners</h6>
+                                <div class="d-flex">
+                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
+                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
+                            <img class="img-fluid rounded" src="img/courses-80x80.jpg" alt="">
+                            <div class="pl-3">
+                                <h6>Web design & development courses for beginners</h6>
+                                <div class="d-flex">
+                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
+                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
+                            <img class="img-fluid rounded" src="img/courses-80x80.jpg" alt="">
+                            <div class="pl-3">
+                                <h6>Web design & development courses for beginners</h6>
+                                <div class="d-flex">
+                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
+                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none" href="">
+                            <img class="img-fluid rounded" src="img/courses-80x80.jpg" alt="">
+                            <div class="pl-3">
+                                <h6>Web design & development courses for beginners</h6>
+                                <div class="d-flex">
+                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
+                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
+    <!-- Detail End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+        <div class="container mt-1 pt-1">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                    </a>
+                    <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+                </div>
+                <!-- <div class="col-md-6 mb-5">
+                    <h3 class="text-white mb-4">Newsletter</h3>
+                    <div class="w-100">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary px-4">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Get In Touch</h3>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
+                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Our Courses</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Quick Links</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy Policy</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms & Condition</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Regular FAQs</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help & Support</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <!-- <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
