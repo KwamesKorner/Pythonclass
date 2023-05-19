@@ -60,9 +60,10 @@
                     <img class="img-fluid rounded w-25 mb-4" src="img/select_folder.png">
     
                     <h3>Put the images into the folder</h3>
-                    Download the character image <a href="img/character.png" download>HERE</a> and object image <a href="img/object.png" download>HERE</a> 
+                    Download the character image <a href="img/character.png" download>HERE</a>, object image <a href="img/object.png" download>HERE</a>, 
+                    and background image <a href="img/background.png" download>HERE</a> 
                     Click the three dots and select <strong>Upload file</strong>. 
-                    Then, select <strong>person.png</strong> and <strong>person2.png</strong> from the files. <br/>
+                    Then, select <strong>person.png</strong>, <strong>person2.png</strong>, <strong>background.png</strong> from the files. <br/>
                     <img class="img-fluid rounded w-25 mb-4" src="img/upload_image.png"><br/>
                     Drag person.png and person2.png into the images folder. Your folders should look something like this example.<br/>
                     <img class="img-fluid rounded w-25 mb-4" src="img/folder_structure.png">
@@ -89,7 +90,7 @@
                 </p>
                 <pre><code>
     player = Actor("character")
-    player.pos = WIDTH // 2, HEIGHT - 50
+    player.pos = WIDTH // 2, HEIGHT - 90
     
     objects = []
     for _ in range(5):
@@ -160,20 +161,20 @@
                 <pre><code>
     def update():
     </code></pre>
-                <p>Check if the player misses less than 3 objects.</p>
-                <pre><code>    
+                <p>Access global variables score and missed. Check if the player misses less than 3 objects.</p>
+                <pre><code>
+        global score, missed    
         if missed < 3:
     </code></pre>
                 <p>Move the player left or right based on keyboard input.</p>
                 <pre><code>        
             if keyboard.left and player.left > 0:
-                player.x -= 5
+                player.x -= 8
             if keyboard.right and player.right < WIDTH:
-                player.x += 5
+                player.x += 8
     </code></pre>
-                <p>Access global variables score and missed. Move each falling object down.</p>
+                <p>Move each falling object down.</p>
                 <pre><code>        
-            global score, missed
             for obj in objects:
                 obj.y += 3
     </code></pre>
