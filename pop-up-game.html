@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+        <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+            <div class="mb-7">
+                <div class="section-title position-relative mb-6" style="margin-top:5%">
+                    <h1>Creating a Simple Game with Pygame Zero</h1>
+                </div>                       
+                <p></p>
+                <br/>
+                <div class="section-title position-relative mb-6">
+                    <h3>Game Overview</h3>
+                </div>
+                <p>
+                    In this lesson, we will create a simple game using Pygame Zero. The player will control a character that needs to catch falling objects. The game will keep track of the player's score and the number of missed objects. The game will end when the player misses three objects.
+                </p>
+
+                <h3>Set up an image folder</h3>
+                    This game uses images of a box and an obstacle. In the upper left corner of the screen, 
+                    click the folder icon with a plus sign and name the folder 
+                    <strong>images</strong>.<br/>
+    
+                    <img class="img-fluid rounded w-25 mb-4" src="img/select_folder.png">
+    
+                    <h3>Put the images into the folder</h3>
+                    Download the character image <a href="img/character.png" download>HERE</a> and object image <a href="img/object.png" download>HERE</a> 
+                    Click the three dots and select <strong>Upload file</strong>. 
+                    Then, select <strong>person.png</strong> and <strong>person2.png</strong> from the files. <br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/upload_image.png"><br/>
+                    Drag person.png and person2.png into the images folder. Your folders should look something like this example.<br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/folder_structure.png">
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Setting up the Game Window</h3>
+                </div>
+                <p>
+                    First, let's import the required modules and set up the game window dimensions.
+                </p>
+                <pre><code>
+    import pgzrun
+    import random
+    
+    WIDTH = 800
+    HEIGHT = 600
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Creating the Player and Objects</h3>
+                </div>
+                <p>
+                    Next, we will create the player character and position it at the bottom center of the screen. We will also create a list of objects that will fall from the top of the screen.
+                </p>
+                <pre><code>
+    player = Actor("character")
+    player.pos = WIDTH // 2, HEIGHT - 50
+    
+    objects = []
+    for _ in range(5):
+        obj = Actor("object")
+        obj.pos = random.randint(0, WIDTH), random.randint(-100, -10)
+        objects.append(obj)
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Creating the Background</h3>
+                </div>
+                <p>
+                    We will create a background actor and position it at the center of the screen.
+                </p>
+                <pre><code>
+    background = Actor("background", (WIDTH // 2, HEIGHT // 2))
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Setting up the Score and Missed Counters</h3>
+                </div>
+                <p>
+                    We will create two variables to keep track of the player's score and the number of missed objects.
+                </p>
+                <pre><code>
+    score = 0
+    missed = 0
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Define the draw() Function</h3>
+                </div>
+                <p>
+                    The draw() function will display the game elements on the screen. 
+                </p>
+                <pre><code>
+    def draw():
+    </code></pre>
+                <p>First, we will clear the screen.</p>
+                <pre><code>    
+        screen.clear()
+    </code></pre>
+                <p>Draw the background, player, and each falling object.</p>
+                <pre><code>    
+        background.draw()
+        player.draw()
+        for obj in objects:
+            obj.draw()
+    </code></pre>
+                <p>Display the score and the number of missed objects.</p>
+                <pre><code>    
+        screen.draw.text("Score: " + str(score), (10, 10), fontsize=30, color="white")
+        screen.draw.text("Missed: " + str(missed), (10, 50), fontsize=30, color="white")
+    </code></pre>
+                <p>If the player misses 3 objects, we will display a "Game Over!" message.</p>
+                <pre><code>    
+        if missed >= 3:
+            screen.draw.text("Game Over!",(WIDTH // 2 - 100, HEIGHT // 2),fontsize=60,color="red")
+    </code></pre>
+                <br/>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Define the update() Function</h3>
+                </div>
+                <p>
+                    The update() function handles the game logic.
+                </p>
+                <pre><code>
+    def update():
+    </code></pre>
+                <p>Check if the player misses less than 3 objects.</p>
+                <pre><code>    
+        if missed < 3:
+    </code></pre>
+                <p>Move the player left or right based on keyboard input.</p>
+                <pre><code>        
+            if keyboard.left and player.left > 0:
+                player.x -= 5
+            if keyboard.right and player.right < WIDTH:
+                player.x += 5
+    </code></pre>
+                <p>Access global variables score and missed. Move each falling object down.</p>
+                <pre><code>        
+            global score, missed
+            for obj in objects:
+                obj.y += 3
+    </code></pre>
+                <p>Check if an object reaches the bottom of the screen. If so, reset its position to the top and increment the number of missed objects.</p>
+                <pre><code>            
+            if obj.top > HEIGHT:
+                obj.pos = random.randint(0, WIDTH), random.randint(-100, -10)
+                missed += 1
+    </code></pre>
+                <p>Check if the player collides with an object. If so, reset the object's position and increment the player's score.</p>
+                <pre><code>            
+            if player.colliderect(obj):
+                obj.pos = random.randint(0, WIDTH), random.randint(-100, -10)
+                score += 1
+    </code></pre>
+                <br/>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Starting the Game</h3>
+                </div>
+                <p>
+                    Finally, we will call pgzrun.go() to start the game. Make sure it's always the last line of code in your program.
+                </p>
+                <pre><code>
+    pgzrun.go()
+                </code></pre>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+        <div class="container mt-1 pt-1">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                    </a>
+                    <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <!-- <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

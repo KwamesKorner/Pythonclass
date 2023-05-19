@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+        <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+            <div class="mb-7">
+                <div class="section-title position-relative mb-6" style="margin-top:5%">
+                    <h1>Intro to Gaming in Python</h1>
+                </div>                       
+                <p></p>
+                <br/>
+                <div class="section-title position-relative mb-6">
+                    <h2>Environment Setup</h2>
+                </div>
+                <p>
+                    Go to <a href="https://replit.com/" target="_blank">Replit</a> and create an account if you don't alrerady have one.
+                </p>
+                <div class="section-title position-relative mb-6">
+                    <h2>Pygame Zero -- The Basics</h2>
+                </div>
+                <p>
+                    Before we create a game using python, we have to get familiar with the Library (set of code) that allows us to create playable games.<br/>
+                    <h3>Open Replit</h3>
+                    Create a new <strong>Repl</strong> called <strong>my_first_game</strong>. 
+                    Once you get to the homepage, click <strong>Create Repl</strong><br/><br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/create_repl.png"><br/>
+                    Type <strong>pygame</strong> in the search box and then click on the Pygame template option<br/><br/>
+                    <img class="img-fluid rounded w-50 mb-4" src="img/select_pygame.png"><br/>
+                    Name your repl <strong>my_first_game</strong> and then click <strong>Create Repl</strong><br/><br/>
+                    <img class="img-fluid rounded w-50 mb-4" src="img/name_repl.png"><br/>
+                    Now you'll be taken to the code editor go inside <strong>main.py</strong> and clear out the sample code. All you should see in that file is the below:<br/><br/>
+                    <img class="img-fluid rounded w-50 mb-4" src="img/blank_file.png"><br/>
+
+                    
+                    <h3>Set up an image folder</h3>
+                    This game uses images of a box and an obstacle. In the upper left corner of the screen, 
+                    click the folder icon with a plus sign and name the folder 
+                    <strong>images</strong>.<br/>
+    
+                    <img class="img-fluid rounded w-25 mb-4" src="img/select_folder.png">
+    
+                    <h3>Put the images into the folder</h3>
+                    Download the person image <a href="img/person.png" download>HERE</a> and person2 image <a href="img/person2.png" download>HERE</a> 
+                    Click the three dots and select <strong>Upload file</strong>. 
+                    Then, select <strong>person.png</strong> and <strong>person2.png</strong> from the files. <br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/upload_image.png"><br/>
+                    Drag person.png and person2.png into the images folder. Your folders should look something like this example.<br/>
+                    <img class="img-fluid rounded w-25 mb-4" src="img/folder_structure.png">
+    
+                    <h3>Import pgzrun</h3>
+                    In order to run our game, we need to import <strong>pgzrun</strong>. Add 
+                    the below code.
+    
+                    <pre><code>import pgzrun</code></pre>
+    
+                    <h3>Create the Actor</h3>
+                    In pygameZero, an <Strong>actor</Strong> is any character, item, or any visible element in the game.
+                    They are drawn onto the screen at any postion the programmer specifies. 
+                    Let's create an actor called "person" using the "person" image file that we loaded inot our project and then
+                    sets the initial position of the person actor at coordinates (100, 150).
+    
+                    <pre><code>
+    person = Actor("person")
+    person.pos = 100, 150</code></pre>
+    
+<h3>Draw the Screen and the Actor</h3>
+Next, we need to use the draw() function
+to display the Actor on the screen, change
+the background color, and display a message<br/><br/>
+
+    Let's first define the <strong>draw()</strong> function which is responsible for drawing the screen and the actor. A <strong>function</strong> is essentailly a set of code that other parts of a prorgam can execute with out having to re-write the code (like a shortcut!)
+    Note that functions in pygame zero (and python) are defined by a name immediately followed by parentheses and a colon <strong>():</strong>.
+    All of the code tied to a function is written underneath the funation name and is <strong>indented</strong> relative to the function name.
+
+    
+    <pre><code>
+    def draw():
+    </code></pre>
+
+    Next, we fill the background of the screen with the color blue--make sure the 
+    below line of code is indented relative to the function name.
+    
+    <pre><code>
+        screen.fill("blue")
+    </code></pre>
+
+    Then, draw the text "Welcome to my game" at the center coordinates (150, 75) 
+    with font size 40 and color white.
+    <pre><code>
+        screen.draw.text("Welcome to my game", center =(150,75), fontsize=40, color="white")
+    </code></pre>
+    Finally, to complete the initial setup of our game, we draw the person actor on the screen.
+    <pre><code>    
+        person.draw()
+    </code></pre>
+    
+<h3>Update the game</h3>
+The update() function handles the game logic, such as actor movement. Type in the following code to define the update() function.
+<br/><br/>
+    Define the <strong>update()</strong> function.
+    <pre><code>
+    def update():
+    </code></pre>
+    Specify that we are using the global variable "person". A <strong>global</strong> variable is 
+    a variable that is accessible from anywhere in the code. In Python, we can use the `global` 
+    keyword inside a function to indicate that you are referring to a global variable rather than a local variable with the same name
+    (in this case, person)
+    <pre><code>
+        global person
+</code></pre>
+    Next, we have to tell the game what to do if the left arrow key is pressed.
+    What it will do is move the person actor 5 units to the left, by subtracting 5 from its current x positon.
+<pre><code>
+        if keyboard.left:
+            person.x -= 5
+</code></pre>
+    Next, we have to tell the game what to do if the right arrow key is pressed.
+    What it will do is move the person actor 5 units to the right, by adding 5 to its current x positon.
+<pre><code>
+        if keyboard.right:
+            person.x += 5
+</code></pre>
+    Next, we have to tell the game what to do if the up arrow key is pressed.
+    What it will do is move the person actor 5 units up, by subtracting 5 from its current y positon.
+<pre><code>
+        if keyboard.up:
+            person.y -= 5
+</code></pre>
+    Next, we have to tell the game what to do if the down arrow key is pressed.
+    What it will do is move the person actor 5 units down, by adding 5 to its current y positon. 
+    Notice how for up, we subtractm and down, we add
+<pre><code>
+        if keyboard.down:
+            person.y += 5
+</code></pre>
+To wrap up the update function, we have to tell the game what to do if the enter key is pressed.
+What it will do is swap the person actor to use the person2 image in place of the initial person image 
+and reset the person actor's position to coordinates (100, 150)
+<pre><code>
+        if keyboard.RETURN:
+            person = Actor("person2")
+            person.pos = 100, 150
+</code></pre>
+
+<h3>Call pgzrun.go()</h3>
+In order to start the game, we have to use our pgzrun import by calling <strong>pgzrun.go()</strong> 
+at the very end of our program. Add the following line to your program. <strong>MAKE SURE IT'S ALWAYS 
+
+THE LAST LINE OF CODE IN YOUR PROGRAM</strong>.
+<pre><code>
+    pgzrun.go()
+</code></pre>
+                    
+                    
+    </p>
+</div>
+</div>
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+        <div class="container mt-1 pt-1">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                    </a>
+                    <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <!-- <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
