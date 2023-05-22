@@ -79,7 +79,7 @@
     hurdles = []
     for i in range(5):
         hurdle = Actor("hurdle")
-        hurdle.pos = (150 + (i * 160), random.randint(100, 260))
+        hurdle.pos = (150 + (i * 160), random.randint(50, 260))
         hurdles.append(hurdle)
                 </code></pre>
 
@@ -116,7 +116,7 @@
                 score = 0
             elif hurdle.x < -30:
                 hurdle.x = 800
-                hurdle.y = random.randint(20, 260)
+                hurdle.y = random.randint(50, 260)
                 score += 1
                 </code></pre>
                 <br/>
