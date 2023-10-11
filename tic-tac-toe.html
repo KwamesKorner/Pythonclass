@@ -141,6 +141,14 @@
                     draw_x(x, y)
                 elif game.board[y][x] == 'O':
                     draw_o(x, y)
+    def draw_x(x, y):
+    screen.draw.line((x * TILE_SIZE, y * TILE_SIZE),
+                     ((x + 1) * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
+    screen.draw.line(((x + 1) * TILE_SIZE, y * TILE_SIZE),
+                     (x * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
+
+    def draw_o(x, y):
+        screen.draw.circle((x * TILE_SIZE + TILE_SIZE // 2, y * TILE_SIZE + TILE_SIZE // 2), TILE_SIZE // 3, 'blue')
         </code></pre>
     
                 <div class="section-title position-relative mb-6">
