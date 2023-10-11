@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+        <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+            <div class="mb-7">
+                <div class="section-title position-relative mb-6" style="margin-top:5%">
+                    <h1>Creating a Simple Tic Tac Toe Game with Pygame Zero</h1>
+                </div>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Setting up the Game Window</h3>
+                </div>
+                <p>We'll start by importing two libraries: `pgzrun` to help run the game and `random` to make unpredictable choices for the computer.</p>
+                <pre><code>
+    import pgzrun
+    import random
+                </code></pre>
+    
+                <p>Next, we decide the size of our game window. The game will be 300 pixels wide and tall. Each square (or tile) of our Tic Tac Toe board is one-third of the game window's width.</p>
+                <pre><code>
+    WIDTH = 300
+    HEIGHT = 300
+    TILE_SIZE = WIDTH // 3
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Building the Game Logic with a Class</h3>
+                </div>
+                <p>We'll construct a class named <strong>Game</strong>. This class is like the game's control center. When we make a new "instance" of this class, we initiate a new game.</p>
+                <pre><code>
+    class Game:
+        def __init__(self):
+            self.board = [['' for _ in range(3)] for _ in range(3)]
+            self.player = 'X'
+            self.ai = 'O'
+            self.current_turn = 'X'
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Player's Turn</h3>
+                </div>
+                <p>This section dictates how the player places an "X" on the board.</p>
+                <pre><code>
+        def player_move(self, x, y):
+            if self.board[y][x] == '':
+                self.board[y][x] = self.player
+                if not self.is_game_over():
+                    self.current_turn = self.ai
+                    self.ai_move()
+                </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>AI's Turn</h3>
+                </div>
+                <p>The computer uses this part to decide where to place an "O" on the board. It selects randomly from the available spots.</p>
+                <pre><code>
+        def ai_move(self):
+            available_moves = [(x, y) for y in range(3) for x in range(3) if self.board[y][x] == '']
+            if available_moves:
+                x, y = random.choice(available_moves)
+                self.board[y][x] = self.ai
+            if not self.is_game_over():
+                self.current_turn = self.player
+        </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Checking the Game's Outcome</h3>
+                </div>
+                <p>This section determines if someone (player or AI) has won, or if the board is filled up resulting in a tie.</p>
+                <pre><code>
+        def is_game_over(self):
+            for i in range(3):
+                if self.board[i][0] == self.board[i][1] == self.board[i][2] != '':
+                    return True
+            if self.board[0][0] == self.board[1][1] == self.board[2][2] != '' or self.board[0][2] == self.board[1][1] == self.board[2][0] != '':
+                return True
+            if all(cell != '' for row in self.board for cell in row):
+                return True
+            return False
+        </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Starting a New Game</h3>
+                </div>
+                <p>We create a fresh instance of our Game class, which represents a new game where nobody has made any moves yet.</p>
+                <pre><code>
+    game = Game()
+        </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Visualizing the Game</h3>
+                </div>
+                <p>The `draw` function displays the game board and the moves of both the player and the AI on the screen.</p>
+                <pre><code>
+    def draw():
+        screen.clear()
+        for x in range(1, 3):
+            screen.draw.line((TILE_SIZE * x, 0), (TILE_SIZE * x, HEIGHT), 'white')
+            screen.draw.line((0, TILE_SIZE * x), (WIDTH, TILE_SIZE * x), 'white')
+        
+        for y in range(3):
+            for x in range(3):
+                if game.board[y][x] == 'X':
+                    draw_x(x, y)
+                elif game.board[y][x] == 'O':
+                    draw_o(x, y)
+        </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Responding to Player Clicks</h3>
+                </div>
+                <p>When the player clicks on a spot, this function determines where they clicked and registers the move for them.</p>
+                <pre><code>
+    def on_mouse_down(pos):
+        if game.current_turn == game.player:
+            x, y = pos[0] // TILE_SIZE, pos[1] // TILE_SIZE
+            game.player_move(x, y)
+        </code></pre>
+    
+                <div class="section-title position-relative mb-6">
+                    <h3>Launching the Game</h3>
+                </div>
+                <p>To kick off our game, we'll use the <strong>pgzrun.go()</strong> function.</p>
+                <pre><code>
+    pgzrun.go()
+        </code></pre>
+            </div>
+        </div>
+    </div>    
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+        <div class="container mt-1 pt-1">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                    </a>
+                    <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <!-- <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
