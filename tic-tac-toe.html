@@ -127,7 +127,7 @@
                 <div class="section-title position-relative mb-6">
                     <h3>Visualizing the Game</h3>
                 </div>
-                <p>The `draw` function displays the game board and the moves of both the player and the AI on the screen.</p>
+                <p>The <strong>draw</strong> function displays the game board and the moves of both the player and the AI on the screen.</p>
                 <pre><code>
     def draw():
         screen.clear()
@@ -141,15 +141,33 @@
                     draw_x(x, y)
                 elif game.board[y][x] == 'O':
                     draw_o(x, y)
-    def draw_x(x, y):
-    screen.draw.line((x * TILE_SIZE, y * TILE_SIZE),
-                     ((x + 1) * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
-    screen.draw.line(((x + 1) * TILE_SIZE, y * TILE_SIZE),
-                     (x * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
-
-    def draw_o(x, y):
-        screen.draw.circle((x * TILE_SIZE + TILE_SIZE // 2, y * TILE_SIZE + TILE_SIZE // 2), TILE_SIZE // 3, 'blue')
         </code></pre>
+        <div class="section-title position-relative mb-6">
+            <h3>The draw_x(x, y) Function</h3>
+        </div>
+        <p>This function draws an "X" on the Tic Tac Toe board.</p>
+        <p><strong>Parameters:</strong> It takes in <code>x</code> and <code>y</code> which indicate the column and row numbers of the cell where the "X" should be drawn.</p>
+        <p><strong>Functionality:</strong> The function utilizes the <code>screen.draw.line</code> method twice to create two lines in the shape of an "X". These lines stretch diagonally from one corner of the cell to its opposite counterpart.</p>
+        <pre><code>
+        def draw_x(x, y):
+            screen.draw.line((x * TILE_SIZE, y * TILE_SIZE),
+                             ((x + 1) * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
+            screen.draw.line(((x + 1) * TILE_SIZE, y * TILE_SIZE),
+                             (x * TILE_SIZE, (y + 1) * TILE_SIZE), 'red')
+        </code></pre>
+        
+        <div class="section-title position-relative mb-6">
+            <h3>The draw_o(x, y) Function</h3>
+        </div>
+        <p>This function is designated for drawing an "O" on the Tic Tac Toe board.</p>
+        <p><strong>Parameters:</strong> Similar to <code>draw_x</code>, it requires <code>x</code> and <code>y</code>, which specify the column and row of the cell where the "O" should be positioned.</p>
+        <p><strong>Functionality:</strong> The function harnesses the <code>screen.draw.circle</code> method to design a circle in the center of the designated cell, symbolizing the "O". The circle's radius is set to be one-third of the tile's size, ensuring it snugly fits within the cell, avoiding the edges.</p>
+        <pre><code>
+        def draw_o(x, y):
+            screen.draw.circle((x * TILE_SIZE + TILE_SIZE // 2, y * TILE_SIZE + TILE_SIZE // 2), 
+                                TILE_SIZE // 3, 'blue')
+        </code></pre>
+        
     
                 <div class="section-title position-relative mb-6">
                     <h3>Responding to Player Clicks</h3>
