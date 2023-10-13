@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+        <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+            <div class="mb-7">
+                <div class="section-title position-relative mb-6">
+                    <h1>Pong Game with Paddles and a Bouncing Ball</h1>
+                </div>
+                
+                <!-- Importing Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Importing the Required Module</h3>
+                </div>
+                <p>We begin by importing the <code>pgzrun</code> module to utilize Pygame Zero functionalities:</p>
+                <pre><code>
+    import pgzrun</code></pre>
+                
+                <!-- Setting Up Window Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Setting Up the Window</h3>
+                </div>
+                <p>The dimensions of the game window are established, with a width of 600 pixels and a height of 450 pixels:</p>
+                <pre><code>
+    WIDTH = 600
+    HEIGHT = 450</code></pre>
+                
+                <!-- Ball Properties Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Configuring the Ball Properties</h3>
+                </div>
+                <p>We configure the properties of the ball like its position, size, color, and velocity:</p>
+                <pre><code>
+    ball = {
+        'x': WIDTH // 2,
+        'y': HEIGHT // 2,
+        'radius': 15,
+        'color': (255, 255, 255),
+        'dx': 4,
+        'dy': 4
+    }</code></pre>
+                
+                <!-- Paddle Properties Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Configuring the Paddle Properties</h3>
+                </div>
+                <p>Similarly, we establish the properties of the paddles including dimensions, speed, and initial positions:</p>
+    <pre><code>
+    paddle_height = 80
+    paddle_width = 15
+    paddle_speed = 4
+    left_paddle = {'x': 0 + (paddle_width // 2), 'y': HEIGHT // 2, 'dy': 0}
+    right_paddle = {'x': WIDTH - (paddle_width // 2), 'y': HEIGHT // 2, 'dy': 0}</code></pre>
+                
+                <!-- Update Function Section -->
+                <!-- Part 1 -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Updating Positions</h3>
+                </div>
+                <p>Initially, the function modifies the positions of the ball and paddles:</p>
+                <pre><code>
+    def update():
+        ball['x'] += ball['dx']
+        ball['y'] += ball['dy']
+        left_paddle['y'] += left_paddle['dy']
+        right_paddle['y'] += right_paddle['dy']
+                </code></pre>
+
+                <!-- Part 2 -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Ball Collision with Top and Bottom Walls</h3>
+                </div>
+                <p>Checks if the ball collides with the top or bottom walls and reverses its y-direction velocity accordingly:</p>
+                <pre><code>    
+        if ball['y'] <= ball['radius'] or ball['y'] >= HEIGHT - ball['radius']:
+            ball['dy'] = -ball['dy']</code></pre>
+
+                <!-- Part 3 -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Ball Collision with Paddles</h3>
+                </div>
+                <p>This part ensures the ball bounces back when colliding with a paddle by reversing its x-direction velocity:</p>
+                <pre><code>    
+        if ball['dx'] &lt; 0 and left_paddle['y'] - paddle_height // 2 &lt;= ball['y'] &lt;= left_paddle['y'] + paddle_height // 2 and ball['x'] &lt;= left_paddle['x'] + paddle_width // 2:
+            ball['dx'] = -ball['dx']
+        elif ball['dx'] &gt; 0 and right_paddle['y'] - paddle_height // 2 &lt;= ball['y'] &lt;= right_paddle['y'] + paddle_height // 2 and ball['x'] &gt;= right_paddle['x'] - paddle_width // 2:
+            ball['dx'] = -ball['dx']</code></pre>
+
+                <!-- Part 4 -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Paddle Collision with Top and Bottom</h3>
+                </div>
+                <p>This section prevents paddles from moving outside the screen by restricting their movement within the screen height:</p>
+                <pre><code>
+        for paddle in [left_paddle, right_paddle]:
+            if paddle['y'] &lt; paddle_height // 2:
+                paddle['y'] = paddle_height // 2
+            elif paddle['y'] &gt; HEIGHT - paddle_height // 2:
+                paddle['y'] = HEIGHT - paddle_height // 2
+            </code></pre>
+
+                <!-- Part 5 -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Reset Ball Position</h3>
+                </div>
+                <p>If the ball goes beyond the screen width (x-axis), its position and velocity are reset to initial conditions:</p>
+                <pre><code>    
+        if ball['x'] &lt; 0 or ball['x'] &gt; WIDTH:
+            ball['x'] = WIDTH // 2
+            ball['y'] = HEIGHT // 2
+            ball['dx'] = 4 if ball['dx'] &lt; 0 else -4
+        </code></pre>
+                <!-- Draw Function Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>The <code>draw()</code> Function</h3>
+                </div>
+                <p>This function updates the screen, drawing the paddles and ball in their new positions:</p>
+                <pre><code>
+    def draw():
+        screen.fill((0, 0, 0))
+        screen.draw.filled_circle((ball['x'], ball['y']), ball['radius'], ball['color'])
+        screen.draw.filled_rect(Rect((left_paddle['x'] - paddle_width // 2, left_paddle['y'] - paddle_height // 2), (paddle_width, paddle_height)), (255, 255, 255))
+        screen.draw.filled_rect(Rect((right_paddle['x'] - paddle_width // 2, right_paddle['y'] - paddle_height // 2), (paddle_width, paddle_height)), (255, 255, 255))
+                </code></pre>
+                
+                <!-- Handling Key Presses Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Handling Key Presses and Releases</h3>
+                </div>
+                <p>The <code>on_key_down()</code> and <code>on_key_up()</code> functions are used to control the paddles when certain keys are pressed and released:</p>
+                <pre><code>
+    def on_key_down(key):
+        if key == keys.W:
+            left_paddle['dy'] = -paddle_speed
+        elif key == keys.S:
+            left_paddle['dy'] = paddle_speed
+        elif key == keys.UP:
+            right_paddle['dy'] = -paddle_speed
+        elif key == keys.DOWN:
+            right_paddle['dy'] = paddle_speed
+                
+    def on_key_up(key):
+        if key == keys.W or key == keys.S:
+            left_paddle['dy'] = 0
+        elif key == keys.UP or key == keys.DOWN:
+            right_paddle['dy'] = 0
+                </code></pre>
+                
+                <!-- Running the Game Section -->
+                <div class="section-title position-relative mb-6">
+                    <h3>Executing the Game</h3>
+                </div>
+                <p>Lastly, <code>pgzrun.go()</code> perpetually runs the game, repeatedly invoking <code>update()</code> and <code>draw()</code> functions:</p>
+                <pre><code>
+    pgzrun.go()
+    </code></pre>
+            </div>
+        </div>
+    </div>
+   <!-- Footer Start -->
+   <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+    <div class="container mt-1 pt-1">
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                </a>
+                <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                </p>
+            </div>
+            <!-- <div class="col-md-6 text-center text-md-right">
+                <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                </p>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
