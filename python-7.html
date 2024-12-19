@@ -181,14 +181,20 @@
                             Remember, in order to run our game, we need to import <strong>pgzrun</strong>. Add 
                             the below code.
 
-                            <iframe src="https://pastebin.com/embed_iframe/kCS6hf2C?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
+                            <!--<iframe src="https://pastebin.com/embed_iframe/kCS6hf2C?theme=dark" style="border:none;width:100%;height:10vh"></iframe>-->
+<pre><code>
+import pgzrun
+</code></pre>
 
                             <h3>Introducing an Actor</h3>
                             Now you can start writing some code. Go to <strong>main.py</strong>,
                             erase the sample code, and write this line of code in the editor window. 
                             Then click <strong>Run</strong>.<br/>
                             
-                            <iframe src="https://pastebin.com/embed_iframe/mZSTB3qA?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
+                            <!--iframe src="https://pastebin.com/embed_iframe/mZSTB3qA?theme=dark" style="border:none;width:100%;height:15vh"></iframe>-->
+<pre><code>
+apple = Actor("apple")
+</code></pre>
             
                             **In computer games development,
                             a sprite is an object, like a coin or an
@@ -208,16 +214,22 @@
                             if a character has moved or a score has changed, you can use 
                             this function to update the screen with those changes. Write 
                             this code beneath your previous code.
-                            <iframe src="https://pastebin.com/embed_iframe/1thuEVvd?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/1thuEVvd?theme=dark" style="border:none;width:100%; height:15vh"></iframe-->
+<pre><code>
+def draw():
+    screen.clear()
+    apple.draw()
+</code></pre>
                             <h3>Call pgzrun.go()</h3>
                             In order to start the game, we have to use our pgzrun import by calling <strong>pgzrun.go()</strong> 
                             at the very end of our program. Add the foillowing line to your program. <strong>MAKE SURE IT'S ALWAYS 
                             THE LAST LINE OF CODE IN YOUR PROGRAM</strong>.
 
-                            <iframe src="https://pastebin.com/embed_iframe/meyMEYWc?theme=dark" style="border:none;width:100%;height:10vh;"></iframe>
+                            <!--iframe src="https://pastebin.com/embed_iframe/meyMEYWc?theme=dark" style="border:none;width:100%;height:10vh;"></iframe-->
 
-
+<pre><code>
+pgzrun.go()
+</code></pre>
                             <h3>Test the code</h3>
                             Now it’s time to test the code. Go ahead and click <strong>Run</strong> again 
                             and see what happens.
@@ -227,14 +239,20 @@
                             You can change the code to place the apple exactly where you want it on the 
                             screen. Write this function, which will place the apple at the <strong>coordinates 
                             (300, 200)</strong>.
-                            <iframe src="https://pastebin.com/embed_iframe/m4GLnMME?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/m4GLnMME?theme=dark" style="border:none;width:100%;height:15vh"></iframe-->
+<pre><code>
+def place_apple():
+    apple.x = 300
+    apple.y = 200
+</code></pre>
                             <h3>Running the function</h3>
                             After you’ve written the function to place the apple on the screen, 
                             you need to tell Python to run it. Add this extra line of code to run 
                             the function called <strong>place_apple()</strong>.
-                            <iframe src="https://pastebin.com/embed_iframe/m5xcgDE1?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/m5xcgDE1?theme=dark" style="border:none;width:100%;height:15vh"></iframe-->
+<pre><code>
+place_apple()
+</code></pre>
                             <h3>Test it again</h3>
                             Save your file and then run the code again. This time the apple will appear 
                             at the point (300, 200).
@@ -247,8 +265,12 @@
                             you added in Step 9 and Step 10, then run it. You should see the message “Good shot!” 
                             in the Command Prompt or Terminal window each time you click the mouse.
 
-                            <iframe src="https://pastebin.com/embed_iframe/8Wb4JYtX?theme=dark" style="border:none;width:100%;height:15vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/8Wb4JYtX?theme=dark" style="border:none;width:100%;height:15vh"></iframe-->
+<pre><code>
+def on_mouse_down(pos):
+    print("Good shot!")
+    place_apple()    
+</code></pre>
                             <h3>Adding some logic</h3>
                             At this point, the “Good shot!” message is displayed every time you click the mouse, 
                             but we only want it to show if the player actually hits the apple. You can do this by 
@@ -256,29 +278,49 @@
                             the apple and the mouse cursor are in the same position. If they are, the message is 
                             displayed.
 
-                            <iframe src="https://pastebin.com/embed_iframe/72xZQnkc?theme=dark" style="border:none;width:100%; height:20vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/72xZQnkc?theme=dark" style="border:none;width:100%; height:20vh"></iframe-->
+<pre><code>
+def on_mouse_down(pos):
+    if apple.collidepoint(pos):
+        print("Good shot!")
+        place_apple()   
+</code></pre>
                             <h3>Missed a shot? Game over!</h3>
                             Add some more logic to your code, so that if you miss a shot and don’t 
                             click on the apple, it quits the game. Add an else statement in order to make this happen.
 
-                            <iframe src="https://pastebin.com/embed_iframe/RKCRvPE4?theme=dark" style="border:none;width:100%; height:28vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/RKCRvPE4?theme=dark" style="border:none;width:100%; height:28vh"></iframe-->
+<pre><code>
+def on_mouse_down(pos):
+    if apple.collidepoint(pos):
+        print("Good shot!")
+        place_apple()
+    else:
+        print("You missed!")
+        quit()  
+</code></pre>
                             <h3>Importing Random</h3>
                             The game is very easy at this point, because the apple is always drawn at the same place 
                             on the screen. You can use Python’s Random module to make the game more challenging by 
                             placing the apple at a random point on the screen each time it is drawn. First, add 
                             this code at the very top of your program.
 
-                            <iframe src="https://pastebin.com/embed_iframe/fZZc6KEg?theme=dark" style="border:none;width:100%; height:10vh"></iframe>
+                            <!--iframe src="https://pastebin.com/embed_iframe/fZZc6KEg?theme=dark" style="border:none;width:100%; height:10vh"></iframe-->
 
+<pre><code>
+from random import randint
+</code></pre>
                             <h3>Using Random</h3>
                             Change the code you typed in Step 9 to look like this. The code will now use the randint() 
                             function to pick a random number between 10 and 500 for the x coordinate and a random number 
                             between 10 and 500 for the y coordinate.
 
-                            <iframe src="https://pastebin.com/embed_iframe/616CUmyP?theme=dark" style="border:none;width:100%; height:15vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/616CUmyP?theme=dark" style="border:none;width:100%; height:15vh"></iframe-->
+<pre><code>
+def place_apple():
+    apple.x = randint(10, 500)
+    apple.y = randint(10, 500)
+</code></pre>
                             <h3>Time to shoot!</h3>
                             You did it! Run your program to play the game. Each time you “shoot” the apple, it will 
                             move to a random place on the screen for you to “shoot” again.
@@ -295,8 +337,10 @@
                             the images folder. Then name the image and change the code accordingly to use the new 
                             fruit as an Actor.
 
-                            <iframe src="https://pastebin.com/embed_iframe/7rKnPmQT?theme=dark" style="border:none;width:100%;height:10vh"></iframe>
-
+                            <!--iframe src="https://pastebin.com/embed_iframe/7rKnPmQT?theme=dark" style="border:none;width:100%;height:10vh"></iframe-->
+<pre><code>
+kiwi = Actor("kiwi")   
+</code></pre>
                             <h3>Keep count</h3>
                             Change your code so that it can keep count of the number of times you click successfully. 
                             You can store the count in a variable, start by setting the variable to 0, increase the 
