@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pygame Zero: Click the Dot Game</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Stylesheet -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .section-title h3 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="text-center">Pygame Zero: Click the Dot Game</h1>
+                <p>This is a simple game where the player clicks on a randomly moving red dot to increase their score. Below is the breakdown of the code:</p>
+
+                <div class="section-title">
+                    <h3>1. Importing Modules</h3>
+                </div>
+                <p>The <code>random</code> module is used to generate random positions for the dot, and <code>pgzrun</code> is used to run the game:</p>
+                <pre class="code-block">import random
+import pgzrun</pre>
+
+                <div class="section-title">
+                    <h3>2. Setting Up the Game Screen</h3>
+                </div>
+                <p>The screen's dimensions are defined here, with both width and height set to 300 pixels:</p>
+                <pre class="code-block">WIDTH = 300
+HEIGHT = 300</pre>
+
+                <div class="section-title">
+                    <h3>3. Dot Setup</h3>
+                </div>
+                <p>The dot is represented by a rectangle that starts at the center of the screen:</p>
+                <pre class="code-block">dot = Rect((WIDTH // 2, HEIGHT // 2), (20, 20))</pre>
+                <ul>
+                    <li><code>Rect((WIDTH // 2, HEIGHT // 2), (20, 20))</code>: Creates a rectangle with a width and height of 20 pixels, positioned at the center of the screen.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>4. Game Variables</h3>
+                </div>
+                <p>The <code>score</code> variable tracks the player's score:</p>
+                <pre class="code-block">score = 0</pre>
+
+                <div class="section-title">
+                    <h3>5. Drawing the Game Screen</h3>
+                </div>
+                <p>The <code>draw()</code> function clears the screen, draws the red dot, and displays the player's score:</p>
+                <pre class="code-block">def draw():
+    screen.clear()
+    screen.draw.filled_rect(dot, "red")
+    screen.draw.text(f"Score: {score}", (10, 10), color="white", fontsize=20)</pre>
+                <ul>
+                    <li><code>screen.clear()</code>: Clears the screen before drawing new elements.</li>
+                    <li><code>screen.draw.filled_rect(dot, "red")</code>: Draws the dot as a red rectangle.</li>
+                    <li><code>screen.draw.text()</code>: Displays the current score at the top-left corner of the screen.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>6. Moving the Dot</h3>
+                </div>
+                <p>The <code>move_dot()</code> function moves the dot to a random position within the screen boundaries:</p>
+                <pre class="code-block">def move_dot():
+    dot.x = random.randint(0, WIDTH - dot.width)
+    dot.y = random.randint(0, HEIGHT - dot.height)</pre>
+                <ul>
+                    <li><code>random.randint(0, WIDTH - dot.width)</code>: Ensures the dot stays within the horizontal boundaries.</li>
+                    <li><code>random.randint(0, HEIGHT - dot.height)</code>: Ensures the dot stays within the vertical boundaries.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>7. Handling Mouse Clicks</h3>
+                </div>
+                <p>The <code>on_mouse_down(pos)</code> function checks if the dot is clicked and updates the score if it is:</p>
+                <pre class="code-block">def on_mouse_down(pos):
+    global score
+    if dot.collidepoint(pos):
+        score += 1
+        move_dot()</pre>
+                <ul>
+                    <li><code>dot.collidepoint(pos)</code>: Checks if the mouse click position overlaps with the dot's position.</li>
+                    <li><code>score += 1</code>: Increases the score by 1 for each successful click.</li>
+                    <li><code>move_dot()</code>: Moves the dot to a new random position after it's clicked.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>8. Scheduling Dot Movement</h3>
+                </div>
+                <p>The dot moves to a new random position every second, using <code>clock.schedule_interval()</code>:</p>
+                <pre class="code-block">clock.schedule_interval(move_dot, 1.0)</pre>
+                <ul>
+                    <li><code>move_dot</code>: The function to be executed.</li>
+                    <li><code>1.0</code>: The interval in seconds between each execution.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>9. Starting the Game</h3>
+                </div>
+                <p>The game starts with the <code>pgzrun.go()</code> function, which runs the game loop:</p>
+                <pre class="code-block">pgzrun.go()</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
