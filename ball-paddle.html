@@ -88,17 +88,83 @@ score = 0
             </code></pre>
 
             <div class="section-title position-relative mb-6">
-                <h3>Drawing the Game Elements</h3>
-            </div>
-            <p>The <code>draw()</code> function clears the screen and draws the paddle, ball, and the current score:</p>
-            <pre><code>
-def draw():
-    screen.clear()
-    screen.draw.filled_rect(paddle, "blue")
-    screen.draw.filled_rect(ball, "red")
-    screen.draw.text(f"Score: {score}", (10, 10), color="white", fontsize=20)
-            </code></pre>
+    <h3>Updating the Game State</h3>
+</div>
+<p>The <code>update()</code> function is the core of the game logic. It handles paddle movement, ball movement, collision detection, and scoring. Here's a step-by-step explanation:</p>
 
+<div class="section-title position-relative mb-6">
+    <h4>Moving the Paddle</h4>
+</div>
+<p>The paddle moves left or right when the corresponding arrow keys are pressed. It stops at the screen edges:</p>
+<pre><code>
+if keyboard.left and paddle.left > 0:
+    paddle.x -= 5
+if keyboard.right and paddle.right < WIDTH:
+    paddle.x += 5
+</code></pre>
+<ul>
+    <li><code>keyboard.left</code>: Detects if the left arrow key is pressed.</li>
+    <li><code>paddle.left > 0</code>: Ensures the paddle doesn’t move beyond the left edge.</li>
+    <li><code>paddle.right < WIDTH</code>: Ensures the paddle doesn’t move beyond the right edge.</li>
+</ul>
+
+<div class="section-title position-relative mb-6">
+    <h4>Moving the Ball</h4>
+</div>
+<p>The ball’s position is updated each frame based on its current speed:</p>
+<pre><code>
+ball.x += ball_speed[0]
+ball.y += ball_speed[1]
+</code></pre>
+<ul>
+    <li><code>ball_speed[0]</code>: The ball’s speed in the x-direction (horizontal).</li>
+    <li><code>ball_speed[1]</code>: The ball’s speed in the y-direction (vertical).</li>
+</ul>
+
+<div class="section-title position-relative mb-6">
+    <h4>Handling Wall Collisions</h4>
+</div>
+<p>The ball bounces off walls when it hits the left, right, or top edges:</p>
+<pre><code>
+if ball.left <= 0 or ball.right >= WIDTH:
+    ball_speed[0] = -ball_speed[0]
+if ball.top <= 0:
+    ball_speed[1] = -ball_speed[1]
+</code></pre>
+<ul>
+    <li><code>ball.left <= 0</code>: Detects collision with the left wall.</li>
+    <li><code>ball.right >= WIDTH</code>: Detects collision with the right wall.</li>
+    <li><code>ball.top <= 0</code>: Detects collision with the top of the screen.</li>
+    <li>Reverses the ball’s direction using <code>-ball_speed</code>.</li>
+</ul>
+
+<div class="section-title position-relative mb-6">
+    <h4>Detecting Paddle Collisions</h4>
+</div>
+<p>The ball bounces off the paddle, and the score increases when this happens:</p>
+<pre><code>
+if ball.colliderect(paddle) and ball_speed[1] > 0:
+    ball_speed[1] = -ball_speed[1]
+    score += 1
+</code></pre>
+<ul>
+    <li><code>ball.colliderect(paddle)</code>: Detects if the ball and paddle are touching.</li>
+    <li><code>ball_speed[1] > 0</code>: Ensures the ball is moving downward before a collision counts.</li>
+    <li><code>score += 1</code>: Increases the score by 1 for a successful bounce.</li>
+</ul>
+
+<div class="section-title position-relative mb-6">
+    <h4>5. Detecting Game Over</h4>
+</div>
+<p>If the ball falls below the paddle, the game ends:</p>
+<pre><code>
+if ball.top > HEIGHT:
+    game_over()
+</code></pre>
+<ul>
+    <li><code>ball.top > HEIGHT</code>: Checks if the ball goes below the bottom of the screen.</li>
+    <li><code>game_over()</code>: Displays the "GAME OVER" message and schedules the game to quit.</li>
+</ul>
             <div class="section-title position-relative mb-6">
                 <h3>Updating the Game State</h3>
             </div>
