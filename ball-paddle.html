@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Empower</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-code mr-3"></i>Empower</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <div class="row" style="background-color: #f2f2f2;">
+    <div class="col-lg-8" style="margin: 0 auto; background-color: #ffffff !important;">
+        <div class="mb-7">
+            <div class="section-title position-relative mb-6">
+                <h1>Simple Paddle Game</h1>
+            </div>
+            
+            <div class="section-title position-relative mb-6">
+                <h3>Importing Modules</h3>
+            </div>
+            <p>The first step is importing the necessary modules. Here we use <code>random</code> for generating random values and <code>pgzrun</code> to run the Pygame Zero game:</p>
+            <pre><code>
+import random
+import pgzrun
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Setting Up the Screen</h3>
+            </div>
+            <p>The screen's size is defined here, with a width of 200 pixels and a height of 300 pixels. These smaller dimensions are great for devices with limited display space:</p>
+            <pre><code>
+WIDTH = 200
+HEIGHT = 300
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Defining the Paddle</h3>
+            </div>
+            <p>The paddle is a rectangular object, represented by a <code>Rect</code> object. It starts at the bottom of the screen:</p>
+            <pre><code>
+paddle = Rect((WIDTH // 2 - 50, HEIGHT - 20), (100, 10))
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Setting Up the Ball</h3>
+            </div>
+            <p>We create a small rectangular ball and set its initial speed in both x and y directions:</p>
+            <pre><code>
+ball = Rect((WIDTH // 2, HEIGHT // 2), (15, 15))
+ball_speed = [3, 3]  # Ball's initial speed (x and y directions)
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Tracking the Score</h3>
+            </div>
+            <p>A variable <code>score</code> is used to track the player's score:</p>
+            <pre><code>
+score = 0
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Drawing the Game Elements</h3>
+            </div>
+            <p>The <code>draw()</code> function clears the screen and draws the paddle, ball, and the current score:</p>
+            <pre><code>
+def draw():
+    screen.clear()
+    screen.draw.filled_rect(paddle, "blue")
+    screen.draw.filled_rect(ball, "red")
+    screen.draw.text(f"Score: {score}", (10, 10), color="white", fontsize=20)
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Updating the Game State</h3>
+            </div>
+            <p>The <code>update()</code> function handles paddle movement, ball movement, collision detection, and scoring:</p>
+            <pre><code>
+def update():
+    global score
+    # Move paddle with arrow keys
+    if keyboard.left and paddle.left > 0:
+        paddle.x -= 5
+    if keyboard.right and paddle.right < WIDTH:
+        paddle.x += 5
+
+    # Move the ball
+    ball.x += ball_speed[0]
+    ball.y += ball_speed[1]
+
+    # Ball collision with walls
+    if ball.left <= 0 or ball.right >= WIDTH:
+        ball_speed[0] = -ball_speed[0]
+    if ball.top <= 0:
+        ball_speed[1] = -ball_speed[1]
+
+    # Ball collision with paddle
+    if ball.colliderect(paddle) and ball_speed[1] > 0:
+        ball_speed[1] = -ball_speed[1]
+        score += 1  # Increment score
+
+    # Ball falls below screen (game over)
+    if ball.top > HEIGHT:
+        game_over()
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Game Over Logic</h3>
+            </div>
+            <p>If the ball falls below the paddle, the game ends. The <code>game_over()</code> function displays a "GAME OVER" message and exits the game after 3 seconds:</p>
+            <pre><code>
+def game_over():
+    screen.draw.text("GAME OVER", center=(WIDTH // 2, HEIGHT // 2), color="white", fontsize=30)
+    clock.schedule_unique(quit_game, 3)  # Quit after 3 seconds
+
+def quit_game():
+    exit()
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
+                <h3>Starting the Game</h3>
+            </div>
+            <p>The game starts by calling <code>pgzrun.go()</code>, which enters a loop that repeatedly calls the <code>update()</code> and <code>draw()</code> functions:</p>
+            <pre><code>
+pgzrun.go()
+            </code></pre>
+        </div>
+    </div>
+</div>    
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5">
+        <div class="container mt-1 pt-1">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-code mr-3"></i>Empower</h1>
+                    </a>
+                    <!-- <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">KX Technology Group, LLC</a>. All Rights Reserved.
+                    </p>
+                </div>
+                <!-- <div class="col-md-6 text-center text-md-right">
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
