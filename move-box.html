@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pygame Zero: Move the Box</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Stylesheet -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .section-title h3 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="text-center">Pygame Zero: Move the Box</h1>
+                <p>This game allows the player to move a blue box around the screen using arrow keys. Below is a breakdown of the code:</p>
+
+                <div class="section-title">
+                    <h3>1. Importing the Pygame Zero Module</h3>
+                </div>
+                <p>The <code>pgzrun</code> module is used to run the game:</p>
+                <pre class="code-block">import pgzrun</pre>
+
+                <div class="section-title">
+                    <h3>2. Setting Up the Game Screen</h3>
+                </div>
+                <p>The screen dimensions are defined as 300 pixels wide and 300 pixels high:</p>
+                <pre class="code-block">WIDTH = 300
+HEIGHT = 300</pre>
+
+                <div class="section-title">
+                    <h3>3. Box Setup</h3>
+                </div>
+                <p>The box is represented by a rectangle, positioned at the center of the screen. It is 30 pixels wide and 30 pixels tall:</p>
+                <pre class="code-block">box = Rect((WIDTH // 2 - 15, HEIGHT // 2 - 15), (30, 30))</pre>
+                <ul>
+                    <li><code>Rect((WIDTH // 2 - 15, HEIGHT // 2 - 15), (30, 30))</code>: Creates a rectangle at the center of the screen with specified dimensions.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>4. Drawing the Game Screen</h3>
+                </div>
+                <p>The <code>draw()</code> function clears the screen and draws the blue box:</p>
+                <pre class="code-block">def draw():
+    screen.clear()
+    screen.draw.filled_rect(box, "blue")</pre>
+                <ul>
+                    <li><code>screen.clear()</code>: Clears the screen before drawing new elements.</li>
+                    <li><code>screen.draw.filled_rect(box, "blue")</code>: Draws the blue box at its current position.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>5. Updating the Game State</h3>
+                </div>
+                <p>The <code>update()</code> function allows the player to move the box using arrow keys:</p>
+                <pre class="code-block">def update():
+    if keyboard.left and box.left > 0:
+        box.x -= 4
+    if keyboard.right and box.right < WIDTH:
+        box.x += 4
+    if keyboard.up and box.top > 0:
+        box.y -= 4
+    if keyboard.down and box.bottom < HEIGHT:
+        box.y += 4</pre>
+                <ul>
+                    <li><code>keyboard.left</code>: Moves the box left if the left arrow key is pressed and the box isn't at the left edge of the screen.</li>
+                    <li><code>keyboard.right</code>: Moves the box right if the right arrow key is pressed and the box isn't at the right edge of the screen.</li>
+                    <li><code>keyboard.up</code>: Moves the box up if the up arrow key is pressed and the box isn't at the top of the screen.</li>
+                    <li><code>keyboard.down</code>: Moves the box down if the down arrow key is pressed and the box isn't at the bottom of the screen.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h3>6. Starting the Game</h3>
+                </div>
+                <p>The game starts with the <code>pgzrun.go()</code> function, which runs the game loop:</p>
+                <pre class="code-block">pgzrun.go()</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
