@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Pygame Zero: Falling Objects Game</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Stylesheet -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .section-title h3 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="mb-5">
+                    <h1 class="text-center">Pygame Zero: Falling Objects Game</h1>
+                    <p>This game involves catching falling stars and avoiding bombs. Players control a basket that moves left and right using arrow keys. Here's a breakdown of the code:</p>
+                </div>
+
+                <div class="section-title">
+                    <h3>Importing Modules</h3>
+                </div>
+                <p>We import the necessary modules: <code>random</code> for generating random values and <code>pgzrun</code> to run the Pygame Zero game:</p>
+                <pre class="code-block">import random
+import pgzrun</pre>
+
+                <div class="section-title">
+                    <h3>Setting Up the Game</h3>
+                </div>
+                <p>The screen size, basket, falling objects, score, and game state are initialized as follows:</p>
+                <pre class="code-block">WIDTH = 200
+HEIGHT = 300
+basket = Rect((WIDTH // 2 - 20, HEIGHT - 30), (40, 10))
+objects = []
+object_speed = 2
+object_types = ["star", "bomb"]
+score = 0
+game_running = True</pre>
+
+                <div class="section-title">
+                    <h3>Spawning Falling Objects</h3>
+                </div>
+                <p>The <code>spawn_object()</code> function generates a random object (either a star or a bomb) at a random position at the top of the screen:</p>
+                <pre class="code-block">def spawn_object():
+    x = random.randint(0, WIDTH - 10)
+    obj_type = random.choice(object_types)
+    objects.append({"rect": Rect((x, -10), (10, 10)), "type": obj_type})</pre>
+
+                <div class="section-title">
+                    <h3>Drawing Game Elements</h3>
+                </div>
+                <p>The <code>draw()</code> function displays the basket, objects, score, and game-over message (if applicable):</p>
+                <pre class="code-block">def draw():
+    screen.clear()
+    screen.draw.filled_rect(basket, "blue")
+    for obj in objects:
+        if obj["type"] == "star":
+            screen.draw.filled_rect(obj["rect"], "yellow")
+        elif obj["type"] == "bomb":
+            screen.draw.filled_rect(obj["rect"], "red")
+    screen.draw.text(f"Score: {score}", (10, 10), color="white", fontsize=20)
+    if not game_running:
+        screen.draw.text("GAME OVER", center=(WIDTH // 2, HEIGHT // 2), color="white", fontsize=30)</pre>
+
+                <div class="section-title">
+                    <h3>Updating the Game State</h3>
+                </div>
+                <p>The <code>update()</code> function is the heart of the game logic. It handles movement, collision detection, scoring, and gradually increases the game's difficulty:</p>
+
+                <div class="section-title">
+                    <h4>1. Checking if the Game is Running</h4>
+                </div>
+                <p>If the game is over, no further updates are processed:</p>
+                <pre class="code-block">if not game_running:
+    return</pre>
+
+                <div class="section-title">
+                    <h4>2. Moving the Basket</h4>
+                </div>
+                <p>The basket is moved left or right with the arrow keys, ensuring it stays within screen bounds:</p>
+                <pre class="code-block">if keyboard.left and basket.left > 0:
+    basket.x -= 4
+if keyboard.right and basket.right < WIDTH:
+    basket.x += 4</pre>
+                <ul>
+                    <li><code>keyboard.left</code>: Detects if the left arrow key is pressed.</li>
+                    <li><code>basket.left > 0</code>: Prevents the basket from moving off the left edge.</li>
+                    <li><code>basket.right < WIDTH</code>: Prevents the basket from moving off the right edge.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h4>3. Moving Falling Objects</h4>
+                </div>
+                <p>Each falling object moves down by a fixed speed:</p>
+                <pre class="code-block">for obj in objects[:]:
+    obj["rect"].y += object_speed</pre>
+
+                <div class="section-title">
+                    <h4>4. Handling Collisions</h4>
+                </div>
+                <p>Objects are checked for collisions with the basket or the bottom of the screen:</p>
+                <pre class="code-block">if obj["rect"].colliderect(basket):
+    if obj["type"] == "star":
+        score += 1
+    elif obj["type"] == "bomb":
+        game_running = False
+    objects.remove(obj)
+elif obj["rect"].top > HEIGHT:
+    objects.remove(obj)</pre>
+                <ul>
+                    <li><code>obj["rect"].colliderect(basket)</code>: Detects if the object touches the basket.</li>
+                    <li><code>obj["type"] == "star"</code>: Increases the score if the object is a star.</li>
+                    <li><code>obj["type"] == "bomb"</code>: Ends the game if the object is a bomb.</li>
+                </ul>
+
+                <div class="section-title">
+                    <h4>5. Gradually Increasing Difficulty</h4>
+                </div>
+                <p>The speed of falling objects increases slightly every 10 points:</p>
+                <pre class="code-block">if score % 10 == 0 and score > 0:
+    global object_speed
+    object_speed += 0.01</pre>
+
+                <div class="section-title">
+                    <h3>Ending the Game</h3>
+                </div>
+                <p>The game ends when the player catches a bomb, and the <code>game_running</code> flag is set to <code>False</code>:</p>
+                <pre class="code-block">def game_over():
+    global game_running
+    game_running = False</pre>
+
+                <div class="section-title">
+                    <h3>Spawning Objects Periodically</h3>
+                </div>
+                <p>Objects are spawned every second using a timer:</p>
+                <pre class="code-block">clock.schedule_interval(spawn_object, 1.0)</pre>
+
+                <div class="section-title">
+                    <h3>Starting the Game</h3>
+                </div>
+                <p>The game starts with the <code>pgzrun.go()</code> function:</p>
+                <pre class="code-block">pgzrun.go()</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
