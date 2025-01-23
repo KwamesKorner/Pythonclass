@@ -88,6 +88,18 @@ score = 0
             </code></pre>
 
             <div class="section-title position-relative mb-6">
+                <h3>Drawing the Game Elements</h3>
+            </div>
+            <p>The <code>draw()</code> function clears the screen and draws the paddle, ball, and the current score:</p>
+            <pre><code>
+def draw():
+    screen.clear()
+    screen.draw.filled_rect(paddle, "blue")
+    screen.draw.filled_rect(ball, "red")
+    screen.draw.text(f"Score: {score}", (10, 10), color="white", fontsize=20)
+            </code></pre>
+
+            <div class="section-title position-relative mb-6">
     <h3>Updating the Game State</h3>
 </div>
 <p>The <code>update()</code> function is the core of the game logic. It handles paddle movement, ball movement, collision detection, and scoring. Here's a step-by-step explanation:</p>
