@@ -166,39 +166,6 @@ if ball.top > HEIGHT:
     <li><code>game_over()</code>: Displays the "GAME OVER" message and schedules the game to quit.</li>
 </ul>
             <div class="section-title position-relative mb-6">
-                <h3>Updating the Game State</h3>
-            </div>
-            <p>The <code>update()</code> function handles paddle movement, ball movement, collision detection, and scoring:</p>
-            <pre><code>
-def update():
-    global score
-    # Move paddle with arrow keys
-    if keyboard.left and paddle.left > 0:
-        paddle.x -= 5
-    if keyboard.right and paddle.right < WIDTH:
-        paddle.x += 5
-
-    # Move the ball
-    ball.x += ball_speed[0]
-    ball.y += ball_speed[1]
-
-    # Ball collision with walls
-    if ball.left <= 0 or ball.right >= WIDTH:
-        ball_speed[0] = -ball_speed[0]
-    if ball.top <= 0:
-        ball_speed[1] = -ball_speed[1]
-
-    # Ball collision with paddle
-    if ball.colliderect(paddle) and ball_speed[1] > 0:
-        ball_speed[1] = -ball_speed[1]
-        score += 1  # Increment score
-
-    # Ball falls below screen (game over)
-    if ball.top > HEIGHT:
-        game_over()
-            </code></pre>
-
-            <div class="section-title position-relative mb-6">
                 <h3>Game Over Logic</h3>
             </div>
             <p>If the ball falls below the paddle, the game ends. The <code>game_over()</code> function displays a "GAME OVER" message and exits the game after 3 seconds:</p>
